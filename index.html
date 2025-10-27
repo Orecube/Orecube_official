@@ -116,47 +116,49 @@
   <!-- Particle Background -->
   <div id="particles-js"></div>
 
-<!-- ===== Header (OpenAI-like) ===== -->
+<!-- ===== Header (Updated Desktop Layout) ===== -->
 <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between w-full">
-    <!-- Logo (text -> icon swap) -->
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    
+    <!-- Logo -->
     <a href="/" class="flex items-center gap-3">
       <span id="logoText" class="font-bold text-xl logo-transition">CloudSia</span>
-      <span id="logoIcon" class="hidden w-6 h-6 rounded-full" style="background:linear-gradient(90deg,#22d3ee,#8b5cf6,#f472b6)"></span>
+      <span id="logoIcon" class="hidden w-6 h-6 rounded-full" 
+            style="background:linear-gradient(90deg,#22d3ee,#8b5cf6,#f472b6)"></span>
     </a>
 
-    <!-- Desktop search (centered) -->
-    <div class="hidden md:flex flex-1 justify-center px-6">
-      <input id="desktopSearch"
-             type="search"
-             placeholder="Search"
-             class="w-full max-w-md px-4 py-2 rounded-full bg-white/5 text-white placeholder-white/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/40" />
-    </div>
-
-    <!-- Right controls: Sign in (desktop) + mobile icons -->
-    <div class="flex items-center gap-3">
-      <!-- mobile search icon -->
-      <button id="mobileSearchBtn" class="md:hidden p-2 rounded-md hover:bg-white/5" aria-label="Search">
-        <!-- magnifier -->
+    <!-- Desktop Right Controls -->
+    <div class="hidden md:flex items-center gap-4 ml-auto">
+      <!-- Search icon -->
+      <button id="mobileSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
         </svg>
       </button>
 
-      <!-- Sign in (desktop only) -->
-      <button id="signInBtn" class="hidden md:inline-flex px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
+      <!-- Sign in button -->
+      <button id="signInBtn" 
+              class="px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
         Sign in
       </button>
+    </div>
 
-<!-- Mobile menu button -->
-<button id="mobileMenuBtn" 
-        class="flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
-  <!-- Top line (thicker & longer) -->
-  <span class="block w-7 h-[1.5px] bg-white rounded"></span>
-  <!-- Bottom line (thicker & shorter) -->
-  <span class="block w-5 h-[1.5px] bg-white rounded"></span>
-</button>
-      
+    <!-- Mobile Controls (search + menu) -->
+    <div class="flex items-center gap-3 md:hidden">
+      <!-- Mobile search icon -->
+      <button id="mobileSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" 
+                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+        </svg>
+      </button>
+
+      <!-- Mobile menu button -->
+      <button id="mobileMenuBtn" 
+              class="flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
+        <span class="block w-7 h-[1.5px] bg-white rounded"></span>
+        <span class="block w-5 h-[1.5px] bg-white rounded"></span>
+      </button>
     </div>
   </div>
 </header>
