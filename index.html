@@ -116,10 +116,10 @@
   <!-- Particle Background -->
   <div id="particles-js"></div>
 
-<!-- ===== Header (Fixed Search Buttons + Desktop Nav) ===== -->
+<!-- ===== Header (Fixed Search Buttons) ===== -->
 <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
   <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-
+    
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3">
       <span id="logoText" class="font-bold text-xl logo-transition">CloudSia</span>
@@ -127,9 +127,9 @@
             style="background:linear-gradient(90deg,#22d3ee,#8b5cf6,#f472b6)"></span>
     </a>
 
-    <!-- Desktop Controls (Search + Login + Nav Links) -->
-    <div class="hidden md:flex items-center gap-5 ml-auto">
-      <!-- Search icon -->
+    <!-- Desktop Right Controls -->
+    <div class="hidden md:flex items-center gap-4 ml-auto">
+      <!-- Search icon (desktop) -->
       <button id="desktopSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" 
@@ -137,22 +137,11 @@
         </svg>
       </button>
 
-      <!-- Login Button -->
+      <!-- Sign in button -->
       <button id="signInBtn" 
               class="px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
         Sign in
       </button>
-
-      <!-- Desktop Nav Links -->
-      <nav class="flex items-center gap-5 text-sm">
-        <a href="/research.html" class="hover:text-gray-300">Research</a>
-        <a href="/safety.html" class="hover:text-gray-300">Safety</a>
-        <a href="/product.html" class="hover:text-gray-300">Product</a>
-        <a href="/gpt.html" class="hover:text-gray-300">GPT Model</a>
-        <a href="/api.html" class="hover:text-gray-300">API Platform</a>
-        <a href="/company.html" class="hover:text-gray-300">Company</a>
-        <a href="/news.html" class="hover:text-gray-300">News</a>
-      </nav>
     </div>
 
     <!-- Mobile Controls (search + menu) -->
@@ -175,10 +164,10 @@
   </div>
 </header>
 
-<!-- Overlay for drawer -->
+<!-- Overlay for drawer (blurred) -->
 <div id="overlay" class="hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40"></div>
 
-<!-- Mobile Drawer -->
+<!-- Mobile drawer -->
 <aside id="mobileMenu" 
   class="fixed top-16 left-0 h-[calc(100%-4rem)] w-80 bg-black text-white 
          transform -translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col">
@@ -200,7 +189,7 @@
   </div>
 </aside>
 
-<!-- Search Overlay (Desktop + Mobile) -->
+<!-- Mobile search overlay (shared for both desktop + mobile) -->
 <div id="searchOverlay" class="hidden fixed inset-0 z-50 flex items-start pt-24 px-6">
   <div class="absolute inset-0 bg-black/60" id="searchOverlayBg"></div>
   <div class="relative z-50 w-full max-w-2xl mx-auto">
@@ -232,8 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoText = document.getElementById('logoText');
   const logoIcon = document.getElementById('logoIcon');
 
+  // Ensure initial logo state
   if (logoIcon) logoIcon.classList.add('hidden');
 
+  // Logo swap on scroll
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       logoText.style.opacity = '0';
@@ -250,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
+  // Drawer open / close
   function openDrawer() {
     mobileMenu.classList.remove('-translate-x-full');
     overlay.classList.remove('hidden');
@@ -270,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   overlay?.addEventListener('click', closeDrawer);
 
+  // Search overlay open/close (both desktop & mobile buttons)
   function openSearch() {
     searchOverlay.classList.remove('hidden');
     setTimeout(() => mobileSearchInput?.focus(), 70);
@@ -290,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-</script>
+  </script>
   
   <!-- Hero Section -->
   <main class="relative z-10">
