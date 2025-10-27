@@ -116,47 +116,50 @@
   <!-- Particle Background -->
   <div id="particles-js"></div>
 
-  <!-- ===== Header (Fixed Search Buttons) ===== -->
+<!-- ===== Header (OpenAI + Anthropic-style) ===== -->
 <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-    
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between w-full">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3">
       <span id="logoText" class="font-bold text-xl logo-transition">CloudSia</span>
-      <span id="logoIcon" class="hidden w-6 h-6 rounded-full" 
-            style="background:linear-gradient(90deg,#22d3ee,#8b5cf6,#f472b6)"></span>
+      <span id="logoIcon" class="hidden w-6 h-6 rounded-full" style="background:linear-gradient(90deg,#22d3ee,#8b5cf6,#f472b6)"></span>
     </a>
 
-    <!-- Desktop Right Controls -->
-    <div class="hidden md:flex items-center gap-4 ml-auto">
-      <!-- Search icon (desktop) -->
-      <button id="desktopSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" 
-                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
-        </svg>
-      </button>
-
-      <!-- Sign in button -->
-      <button id="signInBtn" 
-              class="px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
-        Sign in
-      </button>
+    <!-- Centered Desktop Search -->
+    <div class="hidden md:flex flex-1 justify-center px-6">
+      <input id="desktopSearch"
+             type="search"
+             placeholder="Search"
+             class="w-full max-w-md px-4 py-2 rounded-full bg-white/5 text-white placeholder-white/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/40" />
     </div>
 
-    <!-- Mobile Controls (search + menu) -->
-    <div class="flex items-center gap-3 md:hidden">
-      <!-- Mobile search icon -->
-      <button id="mobileSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
+    <!-- Right Side: Desktop Nav + Login + Mobile Icons -->
+    <div class="flex items-center gap-6">
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="/research.html" class="hover:text-gray-300">Research</a>
+        <a href="/safety.html" class="hover:text-gray-300">Safety</a>
+        <a href="/product.html" class="hover:text-gray-300">Product</a>
+        <a href="/gpt.html" class="hover:text-gray-300">GPT Model</a>
+        <a href="/api.html" class="hover:text-gray-300">API</a>
+        <a href="/company.html" class="hover:text-gray-300">Company</a>
+        <a href="/news.html" class="hover:text-gray-300">News</a>
+      </nav>
+
+      <!-- Sign in (desktop) -->
+      <button id="signInBtn" class="hidden md:inline-flex px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
+        Sign in
+      </button>
+
+      <!-- Mobile Search Button -->
+      <button id="mobileSearchBtn" class="md:hidden p-2 rounded-md hover:bg-white/5" aria-label="Search">
         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" 
-                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
         </svg>
       </button>
 
-      <!-- Mobile menu button -->
-      <button id="mobileMenuBtn" 
-              class="flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
         <span class="block w-7 h-[1.5px] bg-white rounded"></span>
         <span class="block w-5 h-[1.5px] bg-white rounded"></span>
       </button>
@@ -164,14 +167,12 @@
   </div>
 </header>
 
-<!-- Overlay for drawer (blurred) -->
+<!-- Overlay -->
 <div id="overlay" class="hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40"></div>
 
-<!-- Mobile drawer -->
-<aside id="mobileMenu" 
-  class="fixed top-16 left-0 h-[calc(100%-4rem)] w-80 bg-black text-white 
-         transform -translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col">
-
+<!-- Mobile Drawer -->
+<aside id="mobileMenu"
+  class="fixed top-16 left-0 h-[calc(100%-4rem)] w-80 bg-black text-white transform -translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col">
   <nav class="flex-1 px-6 space-y-4 text-lg mt-6">
     <a href="/research.html" class="block hover:text-gray-300">Research</a>
     <a href="/safety.html" class="block hover:text-gray-300">Safety</a>
@@ -181,7 +182,6 @@
     <a href="/company.html" class="block hover:text-gray-300">Company</a>
     <a href="/news.html" class="block hover:text-gray-300">News</a>
   </nav>
-
   <div class="absolute bottom-6 right-6">
     <button class="px-4 py-2 rounded-md bg-white text-black hover:bg-gray-200">
       Sign in
@@ -189,7 +189,7 @@
   </div>
 </aside>
 
-<!-- Mobile search overlay (shared for both desktop + mobile) -->
+<!-- Mobile Search Overlay -->
 <div id="searchOverlay" class="hidden fixed inset-0 z-50 flex items-start pt-24 px-6">
   <div class="absolute inset-0 bg-black/60" id="searchOverlayBg"></div>
   <div class="relative z-50 w-full max-w-2xl mx-auto">
@@ -201,17 +201,18 @@
   </div>
 </div>
 
+<!-- ===== CSS ===== -->
 <style>
   .logo-transition { transition: opacity .25s ease, transform .25s ease; transform-origin: left center; }
 </style>
 
+<!-- ===== JS ===== -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const overlay = document.getElementById('overlay');
 
-  const desktopSearchBtn = document.getElementById('desktopSearchBtn');
   const mobileSearchBtn = document.getElementById('mobileSearchBtn');
   const searchOverlay = document.getElementById('searchOverlay');
   const searchOverlayBg = document.getElementById('searchOverlayBg');
@@ -220,9 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const logoText = document.getElementById('logoText');
   const logoIcon = document.getElementById('logoIcon');
-
-  // Ensure initial logo state
-  if (logoIcon) logoIcon.classList.add('hidden');
 
   // Logo swap on scroll
   window.addEventListener('scroll', () => {
@@ -241,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // Drawer open / close
+  // Drawer
   function openDrawer() {
     mobileMenu.classList.remove('-translate-x-full');
     overlay.classList.remove('hidden');
@@ -254,36 +252,29 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
   }
-
   mobileMenuBtn?.addEventListener('click', () => {
     if (mobileMenu.classList.contains('-translate-x-full')) openDrawer();
     else closeDrawer();
   });
-
   overlay?.addEventListener('click', closeDrawer);
 
-  // Search overlay open/close (both desktop & mobile buttons)
-  function openSearch() {
+  // Mobile Search
+  mobileSearchBtn?.addEventListener('click', () => {
     searchOverlay.classList.remove('hidden');
     setTimeout(() => mobileSearchInput?.focus(), 70);
-  }
-  function closeSearchOverlay() {
-    searchOverlay.classList.add('hidden');
-  }
+  });
+  closeSearch?.addEventListener('click', () => searchOverlay.classList.add('hidden'));
+  searchOverlayBg?.addEventListener('click', () => searchOverlay.classList.add('hidden'));
 
-  desktopSearchBtn?.addEventListener('click', openSearch);
-  mobileSearchBtn?.addEventListener('click', openSearch);
-  closeSearch?.addEventListener('click', closeSearchOverlay);
-  searchOverlayBg?.addEventListener('click', closeSearchOverlay);
-
+  // Close on ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      searchOverlay?.classList.add('hidden');
       closeDrawer();
-      closeSearchOverlay();
     }
   });
 });
-      </script>
+</script>
   
   <!-- Hero Section -->
   <main class="relative z-10">
