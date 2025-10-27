@@ -116,7 +116,7 @@
   <!-- Particle Background -->
   <div id="particles-js"></div>
 
-<!-- ===== Header (OpenAI + Anthropic-style) ===== -->
+<!-- ===== Header (OpenAI + Anthropic-style, fixed layout) ===== -->
 <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
   <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between w-full">
     <!-- Logo -->
@@ -125,7 +125,7 @@
       <span id="logoIcon" class="hidden w-6 h-6 rounded-full" style="background:linear-gradient(90deg,#22d3ee,#8b5cf6,#f472b6)"></span>
     </a>
 
-    <!-- Centered Desktop Search -->
+    <!-- Center Search (unchanged original position) -->
     <div class="hidden md:flex flex-1 justify-center px-6">
       <input id="desktopSearch"
              type="search"
@@ -133,20 +133,20 @@
              class="w-full max-w-md px-4 py-2 rounded-full bg-white/5 text-white placeholder-white/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/40" />
     </div>
 
-    <!-- Right Side: Desktop Nav + Login + Mobile Icons -->
-    <div class="flex items-center gap-6">
-      <!-- Desktop Navigation -->
+    <!-- Right Side: Desktop Nav, Login, Mobile Buttons -->
+    <div class="flex items-center gap-4">
+      <!-- Desktop Navigation (new) -->
       <nav class="hidden md:flex items-center gap-6 text-sm">
         <a href="/research.html" class="hover:text-gray-300">Research</a>
         <a href="/safety.html" class="hover:text-gray-300">Safety</a>
         <a href="/product.html" class="hover:text-gray-300">Product</a>
-        <a href="/gpt.html" class="hover:text-gray-300">GPT Model</a>
+        <a href="/gpt.html" class="hover:text-gray-300">GPT</a>
         <a href="/api.html" class="hover:text-gray-300">API</a>
         <a href="/company.html" class="hover:text-gray-300">Company</a>
         <a href="/news.html" class="hover:text-gray-300">News</a>
       </nav>
 
-      <!-- Sign in (desktop) -->
+      <!-- Sign in -->
       <button id="signInBtn" class="hidden md:inline-flex px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
         Sign in
       </button>
@@ -158,8 +158,8 @@
         </svg>
       </button>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobileMenuBtn" class="flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
+      <!-- Mobile Menu Button (hidden on desktop) -->
+      <button id="mobileMenuBtn" class="md:hidden flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
         <span class="block w-7 h-[1.5px] bg-white rounded"></span>
         <span class="block w-5 h-[1.5px] bg-white rounded"></span>
       </button>
@@ -201,12 +201,15 @@
   </div>
 </div>
 
-<!-- ===== CSS ===== -->
+<!-- Small Local CSS -->
 <style>
-  .logo-transition { transition: opacity .25s ease, transform .25s ease; transform-origin: left center; }
+  .logo-transition {
+    transition: opacity .25s ease, transform .25s ease;
+    transform-origin: left center;
+  }
 </style>
 
-<!-- ===== JS ===== -->
+<!-- JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -239,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // Drawer
+  // Drawer open/close
   function openDrawer() {
     mobileMenu.classList.remove('-translate-x-full');
     overlay.classList.remove('hidden');
@@ -252,13 +255,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
   }
+
   mobileMenuBtn?.addEventListener('click', () => {
     if (mobileMenu.classList.contains('-translate-x-full')) openDrawer();
     else closeDrawer();
   });
   overlay?.addEventListener('click', closeDrawer);
 
-  // Mobile Search
+  // Mobile Search Overlay
   mobileSearchBtn?.addEventListener('click', () => {
     searchOverlay.classList.remove('hidden');
     setTimeout(() => mobileSearchInput?.focus(), 70);
@@ -266,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
   closeSearch?.addEventListener('click', () => searchOverlay.classList.add('hidden'));
   searchOverlayBg?.addEventListener('click', () => searchOverlay.classList.add('hidden'));
 
-  // Close on ESC
+  // ESC to close
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       searchOverlay?.classList.add('hidden');
@@ -274,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-</script>
+                                    </script>
   
   <!-- Hero Section -->
   <main class="relative z-10">
