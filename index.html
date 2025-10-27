@@ -116,7 +116,7 @@
   <!-- Particle Background -->
   <div id="particles-js"></div>
 
-<!-- ===== Header (Updated Desktop Layout) ===== -->
+  <!-- ===== Header (Fixed Search Buttons) ===== -->
 <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
   <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
     
@@ -129,10 +129,11 @@
 
     <!-- Desktop Right Controls -->
     <div class="hidden md:flex items-center gap-4 ml-auto">
-      <!-- Search icon -->
-      <button id="mobileSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
+      <!-- Search icon (desktop) -->
+      <button id="desktopSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+          <path stroke-linecap="round" stroke-linejoin="round" 
+                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
         </svg>
       </button>
 
@@ -187,31 +188,30 @@
     </button>
   </div>
 </aside>
-  
-<!-- Mobile search overlay (full-screen) -->
+
+<!-- Mobile search overlay (shared for both desktop + mobile) -->
 <div id="searchOverlay" class="hidden fixed inset-0 z-50 flex items-start pt-24 px-6">
   <div class="absolute inset-0 bg-black/60" id="searchOverlayBg"></div>
   <div class="relative z-50 w-full max-w-2xl mx-auto">
     <div class="flex items-center gap-3">
-      <input id="mobileSearchInput" type="search" placeholder="Search" class="w-full px-4 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder-white/60 focus:outline-none" />
+      <input id="mobileSearchInput" type="search" placeholder="Search"
+             class="w-full px-4 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder-white/60 focus:outline-none" />
       <button id="closeSearch" class="p-3 rounded-md hover:bg-white/5 text-white">✕</button>
     </div>
   </div>
 </div>
 
-<!-- small local CSS (logo transition) -->
 <style>
   .logo-transition { transition: opacity .25s ease, transform .25s ease; transform-origin: left center; }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Elements
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const overlay = document.getElementById('overlay');
-  const closeMenu = document.getElementById('closeMenu');
 
+  const desktopSearchBtn = document.getElementById('desktopSearchBtn');
   const mobileSearchBtn = document.getElementById('mobileSearchBtn');
   const searchOverlay = document.getElementById('searchOverlay');
   const searchOverlayBg = document.getElementById('searchOverlayBg');
@@ -224,38 +224,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // Ensure initial logo state
   if (logoIcon) logoIcon.classList.add('hidden');
 
-  // NAV LINK animation (desktop)
-  document.querySelectorAll('.nav-link').forEach((link, i) => {
-    setTimeout(() => {
-      link.classList.remove('opacity-0','translate-y-3');
-      link.classList.add('opacity-100','translate-y-0','transition-all','duration-500');
-    }, i * 80);
-  });
-
   // Logo swap on scroll
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-      if (logoText) {
-        logoText.style.opacity = '0';
-        logoText.style.transform = 'scale(.92)';
-      }
+      logoText.style.opacity = '0';
+      logoText.style.transform = 'scale(.92)';
       setTimeout(() => {
-        logoText?.classList.add('hidden');
-        logoIcon?.classList.remove('hidden');
+        logoText.classList.add('hidden');
+        logoIcon.classList.remove('hidden');
       }, 160);
     } else {
-      logoIcon?.classList.add('hidden');
-      logoText?.classList.remove('hidden');
+      logoIcon.classList.add('hidden');
+      logoText.classList.remove('hidden');
       logoText.style.opacity = '1';
       logoText.style.transform = 'scale(1)';
     }
   }, { passive: true });
 
-  // Drawer open / close handlers
+  // Drawer open / close
   function openDrawer() {
     mobileMenu.classList.remove('-translate-x-full');
     overlay.classList.remove('hidden');
-    // prevent body scroll
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
   }
@@ -266,36 +255,35 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-// Attach events - toggle drawer on button click
-mobileMenuBtn?.addEventListener('click', () => {
-  if (mobileMenu.classList.contains('-translate-x-full')) {
-    openDrawer();
-  } else {
-    closeDrawer();
-  }
-});
+  mobileMenuBtn?.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('-translate-x-full')) openDrawer();
+    else closeDrawer();
+  });
 
-// keep close button and overlay closing
-closeMenu?.addEventListener('click', closeDrawer);
-overlay?.addEventListener('click', closeDrawer);
+  overlay?.addEventListener('click', closeDrawer);
 
-  // Mobile search overlay
-  mobileSearchBtn?.addEventListener('click', () => {
+  // Search overlay open/close (both desktop & mobile buttons)
+  function openSearch() {
     searchOverlay.classList.remove('hidden');
     setTimeout(() => mobileSearchInput?.focus(), 70);
-  });
-  closeSearch?.addEventListener('click', () => searchOverlay.classList.add('hidden'));
-  searchOverlayBg?.addEventListener('click', () => searchOverlay.classList.add('hidden'));
+  }
+  function closeSearchOverlay() {
+    searchOverlay.classList.add('hidden');
+  }
 
-  // Close overlays on Esc
+  desktopSearchBtn?.addEventListener('click', openSearch);
+  mobileSearchBtn?.addEventListener('click', openSearch);
+  closeSearch?.addEventListener('click', closeSearchOverlay);
+  searchOverlayBg?.addEventListener('click', closeSearchOverlay);
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      searchOverlay?.classList.add('hidden');
       closeDrawer();
+      closeSearchOverlay();
     }
   });
 });
-</script>
+      </script>
   
   <!-- Hero Section -->
   <main class="relative z-10">
