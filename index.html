@@ -1,4 +1,4 @@
-k<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -117,7 +117,8 @@ k<!DOCTYPE html>
   <div id="particles-js"></div>
 
 <!-- ===== Header (Fixed Search Buttons) ===== -->
-<header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
+  
+  <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
   <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
     
     <!-- Logo -->
@@ -134,9 +135,9 @@ k<!DOCTYPE html>
   <a href="/product.html" class="nav-link text-gray-300 hover:text-white transition">Product</a>
   <a href="/gpt.html" class="nav-link text-gray-300 hover:text-white transition">GPT Model</a>
   <a href="/api.html" class="nav-link text-gray-300 hover:text-white transition">API Platform</a>
+  <a href="/company.html" class="nav-link text-gray-300 hover:text-white transition">Company</a>
   <a href="/news.html" class="nav-link text-gray-300 hover:text-white transition">News</a>
 </nav>
-
     <!-- Desktop Right Controls -->
     <div class="hidden md:flex items-center gap-4 ml-auto">
       <!-- Search icon (desktop) -->
@@ -146,13 +147,7 @@ k<!DOCTYPE html>
                 d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
         </svg>
       </button>
-
-<!-- Sign in (desktop only) -->
-<a href="/login.html" 
-   id="signInBtn" 
-   class="hidden md:inline-flex px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
-  Sign in
-</a>
+      
 
     <!-- Mobile Controls (search + menu) -->
     <div class="flex items-center gap-3 md:hidden">
@@ -188,11 +183,15 @@ k<!DOCTYPE html>
     <a href="/product.html" class="block hover:text-gray-300">Product</a>
     <a href="/gpt.html" class="block hover:text-gray-300">GPT Model</a>
     <a href="/api.html" class="block hover:text-gray-300">API Platform</a>
+    <a href="/company.html" class="block hover:text-gray-300">Company</a>
     <a href="/news.html" class="block hover:text-gray-300">News</a>
   </nav>
 
-  
-  
+  <div class="absolute bottom-6 right-6">
+    <button class="px-4 py-2 rounded-md bg-white text-black hover:bg-gray-200">
+      Sign in
+    </button>
+  </div>
 </aside>
 
 <!-- Mobile search overlay (shared for both desktop + mobile) -->
@@ -289,7 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-  </script>
+</script>
+    
   
   <!-- Hero Section -->
   <main class="relative z-10">
