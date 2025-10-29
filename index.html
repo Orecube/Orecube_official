@@ -541,14 +541,18 @@ document.addEventListener('DOMContentLoaded', () => {
   </nav>
 </aside>
   
-  import { auth, logoutUser } from "./firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+  <script type="module">
+import { auth } from "./firebase-config.js";
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 const navContainer = document.querySelector("#nav-user-area");
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // Logged in: replace login/signup
+    // Logged in: show user profile and logout
     navContainer.innerHTML = `
       <div class="relative group">
         <button class="flex items-center gap-2">
@@ -564,20 +568,23 @@ onAuthStateChanged(auth, (user) => {
     `;
 
     // Logout handler
-    document.querySelector("#logoutBtn").addEventListener("click", async () => {
-      await logoutUser();
+    const logoutBtn = document.querySelector("#logoutBtn");
+    logoutBtn?.addEventListener("click", async () => {
+      await signOut(auth);
       window.location.reload();
     });
 
   } else {
     // Not logged in: show sign-in button
     navContainer.innerHTML = `
-      <a href="/login.html" class="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-black font-semibold">
+      <a href="/login.html" 
+         class="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-black font-semibold">
         Sign in
       </a>
     `;
   }
 });
+</script>
   
   </body>
 </html>
