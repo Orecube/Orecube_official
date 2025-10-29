@@ -138,40 +138,32 @@
   <a href="/news.html" class="nav-link text-gray-300 hover:text-white transition">News</a>
 </nav>
 
-    <!-- Desktop Right Controls -->
-    <div class="hidden md:flex items-center gap-4 ml-auto">
-      <!-- Search icon (desktop) -->
-      <button id="desktopSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" 
-                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
-        </svg>
-      </button>
+    <!-- Right controls: Sign in (desktop) + mobile icons -->
+<div class="flex items-center gap-3">
 
-         <!-- Sign in button -->
-      <button id="signInBtn" 
-              class="px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
-        Sign in
-      </button>
-    </div>
+  <!-- Mobile search icon -->
+  <button id="mobileSearchBtn" class="md:hidden p-2 rounded-md hover:bg-white/5" aria-label="Search">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+    </svg>
+  </button>
 
-    <!-- Mobile Controls (search + menu) -->
-    <div class="flex items-center gap-3 md:hidden">
-      <!-- Mobile search icon -->
-      <button id="mobileSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" 
-                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
-        </svg>
-      </button>
+  <!-- Desktop Sign in -->
+  <a href="/login.html"
+     id="signInBtn"
+     class="hidden md:inline-flex px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
+    Sign in
+  </a>
 
-      <!-- Mobile menu button -->
-      <button id="mobileMenuBtn" 
-              class="flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
-        <span class="block w-7 h-[1.5px] bg-white rounded"></span>
-        <span class="block w-5 h-[1.5px] bg-white rounded"></span>
-      </button>
-    </div>
+  <!-- Mobile menu button -->
+  <button id="mobileMenuBtn" 
+          class="md:hidden flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
+    <span class="block w-7 h-[1.5px] bg-white rounded"></span>
+    <span class="block w-5 h-[1.5px] bg-white rounded"></span>
+  </button>
+
+</div>
+
   </div>
 </header>
 
