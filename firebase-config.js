@@ -1,8 +1,15 @@
 // firebase-config.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  GithubAuthProvider, 
+  setPersistence, 
+  browserLocalPersistence,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
-// ⚙️ Replace these with your Firebase project settings
+// ⚙️ Replace with your Firebase credentials
 const firebaseConfig = {
   apiKey: "YOUR_FIREBASE_API_KEY",
   authDomain: "YOUR_FIREBASE_DOMAIN",
@@ -14,5 +21,12 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+// Enable persistent login
+setPersistence(auth, browserLocalPersistence);
+
 export const googleProvider = new GoogleAuthProvider();
 export const githubProvider = new GithubAuthProvider();
+
+// Helper for logout
+export const logoutUser = () => signOut(auth);
