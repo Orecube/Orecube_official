@@ -115,6 +115,7 @@
 
   <!-- Particle Background -->
   <div id="particles-js"></div>
+
  
 <!-- ===== Header (Fixed Search Buttons) ===== -->
 <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
@@ -539,6 +540,44 @@ document.addEventListener('DOMContentLoaded', () => {
     <a href="/vision.html" class="hover:text-gray-300">Vision</a>
   </nav>
 </aside>
+  
+  import { auth, logoutUser } from "./firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
+const navContainer = document.querySelector("#nav-user-area");
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // Logged in: replace login/signup
+    navContainer.innerHTML = `
+      <div class="relative group">
+        <button class="flex items-center gap-2">
+          <img src="${user.photoURL || 'https://www.svgrepo.com/show/513733/user-circle.svg'}" 
+               class="w-8 h-8 rounded-full border border-gray-500" />
+          <span class="hidden sm:block">${user.displayName || user.email}</span>
+        </button>
+        <div class="absolute right-0 mt-2 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-40">
+          <a href="/profile.html" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+          <button id="logoutBtn" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+        </div>
+      </div>
+    `;
+
+    // Logout handler
+    document.querySelector("#logoutBtn").addEventListener("click", async () => {
+      await logoutUser();
+      window.location.reload();
+    });
+
+  } else {
+    // Not logged in: show sign-in button
+    navContainer.innerHTML = `
+      <a href="/login.html" class="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-black font-semibold">
+        Sign in
+      </a>
+    `;
+  }
+});
   
   </body>
 </html>
