@@ -65,8 +65,7 @@
     .uiv-flex {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
+      justify-content: center
     }
 
     /* Uiverse button (unchanged other than .flex rename) */
@@ -126,8 +125,8 @@
 
   </style>
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/20251130_140434_0000~2.jpg">
-<link rel="apple-touch-icon" href="/assets/20251130_140434_0000~2.jpg">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/20251130_140434_0000~2.jpg">
+<link rel="apple-touch-icon" href="assets/20251130_140434_0000~2.jpg">
 </head>
 <body class="relative font-sans">
 
@@ -136,11 +135,11 @@
 
  
 <!-- ===== Header (Fixed Search Buttons) ===== -->
-<header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black text-white shadow-sm">
+<header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-white/10 text-white shadow-sm">
   <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
     
 <!-- Logo -->
-<a href="/" class="flex items-center gap-3">
+<a href="./index.html" class="flex items-center gap-3">
   <span id="logoText" class="text-2xl font-semibold tracking-tight">
   Orecube
 </span>
@@ -150,13 +149,13 @@
     
     <!-- ===== Centered Desktop Navigation Links ===== -->
 <nav class="hidden md:flex flex-1 justify-center items-center gap-8 text-sm font-medium">
-  <a href="/research.html" class="nav-link text-gray-300 hover:text-white transition">Research</a>
-  <a href="/safety.html" class="nav-link text-gray-300 hover:text-white transition">Safety</a>
-  <a href="/products.html" class="nav-link text-gray-300 hover:text-white transition">Products</a>
-  <a href="/models.html" class="nav-link text-gray-300 hover:text-white transition">Models</a>
-  <a href="/company.html" class="nav-link text-gray-300 hover:text-white transition">Company</a>
-  <a href="/news.html" class="nav-link text-gray-300 hover:text-white transition">News</a>
-  <a href="/about.html" class="nav-link text-gray-300 hover:text-white transition">About</a>
+  <a href="research.html" class="nav-link text-gray-300 hover:text-white transition">Research</a>
+  <a href="safety.html" class="nav-link text-gray-300 hover:text-white transition">Safety</a>
+  <a href="products.html" class="nav-link text-gray-300 hover:text-white transition">Products</a>
+  <a href="models.html" class="nav-link text-gray-300 hover:text-white transition">Models</a>
+  <a href="company.html" class="nav-link text-gray-300 hover:text-white transition">Company</a>
+  <a href="news.html" class="nav-link text-gray-300 hover:text-white transition">News</a>
+  <a href="about.html" class="nav-link text-gray-300 hover:text-white transition">About</a>
 </nav>
 
 <!-- Desktop Right Controls -->
@@ -169,11 +168,10 @@
     </svg>
   </button>
 
-  <!-- Sign in (desktop) as a link, styled like the button -->
-  <a href="/login.html"
-     id="signInBtn"
-     class="inline-flex items-center px-4 py-1.5 rounded-md bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">
-    Sign in
+  <!-- Lumina (desktop) -->
+  <a href="https://luminousai.vercel.app/"
+      class="inline-flex items-center justify-center rounded-full border border-cyan-100/70 bg-cyan-300 px-5 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-cyan-200 hover:shadow-cyan-400/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200">
+     Try Lumina
   </a>
 </div>
 
@@ -207,20 +205,20 @@
          transform -translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col">
 
 <nav class="flex flex-col px-6 gap-4 mt-6 font-sans text-[17px]">
-  <a href="/research.html" class="block font-medium text-gray-300 hover:text-white transition">Research</a>
-  <a href="/safety.html" class="block font-medium text-gray-300 hover:text-white transition">Safety</a>
-  <a href="/products.html" class="block font-medium text-gray-300 hover:text-white transition">Products</a>
-  <a href="/models.html" class="block font-medium text-gray-300 hover:text-white transition">Models</a>
-  <a href="/company.html" class="block font-medium text-gray-300 hover:text-white transition">Company</a>
-  <a href="/news.html" class="block font-medium text-gray-300 hover:text-white transition">News</a>
-  <a href="/about.html" class="block font-medium text-gray-300 hover:text-white transition">About</a>
+  <a href="research.html" class="block font-medium text-gray-300 hover:text-white transition">Research</a>
+  <a href="safety.html" class="block font-medium text-gray-300 hover:text-white transition">Safety</a>
+  <a href="products.html" class="block font-medium text-gray-300 hover:text-white transition">Products</a>
+  <a href="models.html" class="block font-medium text-gray-300 hover:text-white transition">Models</a>
+  <a href="company.html" class="block font-medium text-gray-300 hover:text-white transition">Company</a>
+  <a href="news.html" class="block font-medium text-gray-300 hover:text-white transition">News</a>
+  <a href="about.html" class="block font-medium text-gray-300 hover:text-white transition">About</a>
 </nav>
 
-  <!-- Mobile Sign in Button -->
+  <!-- Mobile Lumina Button -->
   <div class="absolute bottom-6 right-6">
-    <a href="/login.html" 
-       class="px-4 py-2 rounded-md bg-white text-black hover:bg-gray-200 transition">
-      Sign in
+   <a href="https://luminousai.vercel.app/" 
+       class="inline-flex items-center justify-center rounded-full border border-cyan-100/70 bg-cyan-300 px-5 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-cyan-200 hover:shadow-cyan-400/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200">
+      Try Lumina
     </a>
   </div>
 </aside>
@@ -323,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
   
   <!-- Hero Section -->
-  <main class="relative z-10">
+  <main class="relative z-10 pt-16">
     <section class="relative flex flex-col items-center justify-center text-center min-h-screen px-6">
       <div class="z-10 max-w-3xl">
         <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Meet Little Yui</h1>
@@ -338,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <!-- Button (Uiverse) - use uiv-flex so we don't override Tailwind .flex -->
         <div class="flex justify-center mt-16">
-          <a href="https://luminousai.vercel.app/" class="outer-cont uiv-flex">Try Luminous 4.5</a>
+          <a href="https://luminousai.vercel.app/" class="outer-cont uiv-flex">Try Lumina now</a>
         </div>
       </div>
     </section>
@@ -376,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- Image Left, Text Right -->
 <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
   <div>
-    <img src="67b85bb7928bc2daa0ee01ca_gu33Q_iSt1WW7s85w8IBL-p-800.jpg" alt="AI Research" class="w-full rounded-xl shadow-lg">
+    <img src="assets/20251130_140434_0000~2.jpg" alt="AI Research" class="w-full rounded-xl shadow-lg">
   </div>
   <div>
     <h2 class="text-4xl font-bold text-white mb-4">Advancing AI Responsibly</h2>
@@ -401,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </a>
   </div>
   <div>
-    <img src="IMG_7943+(1).jpg" alt="AI Impact" class="w-full rounded-xl shadow-lg">
+    <img src="assets/20251130_140434_0000~2.jpg" alt="AI Impact" class="w-full rounded-xl shadow-lg">
   </div>
 </section>
 
@@ -428,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <h2 class="text-4xl font-bold text-center text-white mb-12">Latest Updates</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <article class="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-      <img src="learn_howtobecomeanaiengineer.jpeg" alt="News 1" class="w-full h-48 object-cover">
+      <img src="Yui_TFHO_4.png" alt="News 1" class="w-full h-48 object-cover">
       <div class="p-6">
         <h3 class="text-xl font-semibold text-white mb-3">Orecube launches new AI model</h3>
         <p class="text-gray-400 text-sm mb-4">Our latest model sets new benchmarks in reasoning and adaptability.</p>
@@ -436,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </article>
     <article class="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-      <img src="AI-in-healthcare2.jpg" alt="News 2" class="w-full h-48 object-cover">
+      <img src="assets/20251130_140434_0000~2.jpg" alt="News 2" class="w-full h-48 object-cover">
       <div class="p-6">
         <h3 class="text-xl font-semibold text-white mb-3">AI in Healthcare</h3>
         <p class="text-gray-400 text-sm mb-4">Exploring how Orecube is revolutionizing diagnostics and treatment.</p>
@@ -444,7 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </article>
     <article class="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-      <img src="Services+photo+with+graphic.png" alt="News 3" class="w-full h-48 object-cover">
+      <img src="assets/20251202_190126_0000.png" alt="News 3" class="w-full h-48 object-cover">
       <div class="p-6">
         <h3 class="text-xl font-semibold text-white mb-3">AI for Education</h3>
         <p class="text-gray-400 text-sm mb-4">New learning tools to make knowledge more accessible for everyone.</p>
@@ -481,10 +479,10 @@ document.addEventListener('DOMContentLoaded', () => {
     <div>
       <h3 class="text-white text-lg font-semibold mb-4">Products</h3>
       <ul class="space-y-2">
-        <li><a href="/gpt.html" class="hover:text-white transition">GPT Models</a></li>
-        <li><a href="/api.html" class="hover:text-white transition">API Platform</a></li>
-        <li><a href="/products.html" class="hover:text-white transition">AI Tools</a></li>
-        <li><a href="/chat.html" class="hover:text-white transition">Yui Companion</a></li>
+        <li><a href="models.html" class="hover:text-white transition">GPT Models</a></li>
+        <li><a href="products.html" class="hover:text-white transition">API Platform</a></li>
+        <li><a href="products.html" class="hover:text-white transition">AI Tools</a></li>
+        <li><a href="index.html" class="hover:text-white transition">Yui Companion</a></li>
       </ul>
     </div>
 
@@ -492,9 +490,9 @@ document.addEventListener('DOMContentLoaded', () => {
     <div>
       <h3 class="text-white text-lg font-semibold mb-4">Resources</h3>
       <ul class="space-y-2">
-        <li><a href="/research.html" class="hover:text-white transition">Research</a></li>
-        <li><a href="/safety.html" class="hover:text-white transition">Safety</a></li>
-        <li><a href="/news.html" class="hover:text-white transition">News & Updates</a></li>
+        <li><a href="research.html" class="hover:text-white transition">Research</a></li>
+        <li><a href="safety.html" class="hover:text-white transition">Safety</a></li>
+        <li><a href="news.html" class="hover:text-white transition">News & Updates</a></li>
         <li><a href="#" class="hover:text-white transition">Documentation</a></li>
       </ul>
     </div>
@@ -503,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div>
       <h3 class="text-white text-lg font-semibold mb-4">Company</h3>
       <ul class="space-y-2">
-        <li><a href="/company.html" class="hover:text-white transition">About Us</a></li>
+        <li><a href="company.html" class="hover:text-white transition">About Us</a></li>
         <li><a href="#" class="hover:text-white transition">Careers</a></li>
         <li><a href="#" class="hover:text-white transition">Contact</a></li>
         <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
@@ -554,67 +552,5 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </footer>
 
-  <!-- Mobile Menu Drawer -->
-<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
-
-<aside id="mobileMenu" class="fixed top-0 left-0 h-full w-64 bg-black text-white transform -translate-x-full transition-transform duration-300 z-50">
-  <div class="flex items-center justify-between px-4 py-4 border-b border-gray-800">
-    <span class="text-lg font-bold">CloudSia</span>
-    <button id="closeMenu" class="text-gray-400 hover:text-white">&times;</button>
-  </div>
-  <nav class="flex flex-col p-4 space-y-4">
-    <a href="/" class="hover:text-gray-300">Home</a>
-    <a href="/sora.html" class="hover:text-gray-300">Sora</a>
-    <a href="/company.html" class="hover:text-gray-300">Company</a>
-    <a href="/blog.html" class="hover:text-gray-300">Blog</a>
-    <a href="/vision.html" class="hover:text-gray-300">Vision</a>
-  </nav>
-</aside>
-  
-  <script type="module">
-import { auth } from "./firebase-config.js";
-import {
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-
-const navContainer = document.querySelector("#nav-user-area");
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // Logged in: show user profile and logout
-    navContainer.innerHTML = `
-      <div class="relative group">
-        <button class="flex items-center gap-2">
-          <img src="${user.photoURL || 'https://www.svgrepo.com/show/513733/user-circle.svg'}" 
-               class="w-8 h-8 rounded-full border border-gray-500" />
-          <span class="hidden sm:block">${user.displayName || user.email}</span>
-        </button>
-        <div class="absolute right-0 mt-2 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-40">
-          <a href="/profile.html" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
-          <button id="logoutBtn" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
-        </div>
-      </div>
-    `;
-
-    // Logout handler
-    const logoutBtn = document.querySelector("#logoutBtn");
-    logoutBtn?.addEventListener("click", async () => {
-      await signOut(auth);
-      window.location.reload();
-    });
-
-  } else {
-    // Not logged in: show sign-in button
-    navContainer.innerHTML = `
-      <a href="/login.html" 
-         class="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-black font-semibold">
-        Sign in
-      </a>
-    `;
-  }
-});
-</script>
-  
   </body>
 </html>
