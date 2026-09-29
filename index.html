@@ -109,6 +109,15 @@
       margin-top: 3px;
     }
 
+    @media (max-width: 767px) {
+      .outer-cont {
+        min-width: 0;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: .875rem;
+      }
+    }
+
     /* logo transition */
     .logo-transition { transition: opacity .25s ease, transform .25s ease; transform-origin: left center; }
 
@@ -316,15 +325,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
   
   <!-- Hero Section -->
-  <main class="relative z-10 pt-[120px]">
-    <section class="relative mx-auto flex min-h-screen w-full max-w-screen-2xl items-center px-6 sm:px-8 lg:px-12">
-      <div class="grid w-full grid-cols-1 items-center gap-6 py-16 text-left lg:grid-cols-2">
+  <main class="relative z-10 pt-[96px] md:pt-[120px]">
+    <section class="relative mx-auto flex min-h-[calc(100svh-96px)] w-full max-w-screen-2xl items-center px-4 sm:px-8 md:min-h-screen lg:px-12">
+      <div class="grid w-full grid-cols-1 items-center gap-4 py-8 text-left md:gap-6 md:py-16 lg:grid-cols-2">
         <div class="z-10 max-w-3xl">
-        <h1 class="text-4xl md:text-[3.25rem] leading-tight font-bold text-white mb-6">
+        <h1 class="text-[2.15rem] leading-[1.15] md:text-[3.25rem] md:leading-tight font-bold text-white mb-4 md:mb-6">
           Meet <span class="text-cyan-300">Lumina</span><br />
           Your Learning <span class="text-pink-400">Companion</span>
         </h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-8">
+        <p class="text-base md:text-xl text-gray-300 mb-6 md:mb-8">
           Your AI companion designed to guide, assist, and bring a human touch to technology.
         </p>
         <div class="flex justify-start">
@@ -332,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
         <div class="flex justify-center">
-          <img src="assets/Yui_TFHO_4.png" alt="Yui AI Companion" class="w-64 md:w-80 lg:w-96 animate-float" />
+          <img src="assets/Yui_TFHO_4.png" alt="Yui AI Companion" class="w-48 sm:w-64 md:w-80 lg:w-96 animate-float" />
         </div>
       </div>
     </section>
