@@ -1,0 +1,41 @@
+@media (max-width: 767px) {
+  header > div > .ml-auto > a {
+    display: none;
+  }
+
+  header details summary {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 0;
+    list-style: none;
+  }
+
+  header details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  header details summary::before {
+    width: 22px;
+    height: 18px;
+    border: 1.5px solid currentColor;
+    border-radius: 4px;
+    background: linear-gradient(to right, transparent 0 30%, currentColor 30% 36%, transparent 36%);
+    content: "";
+  }
+
+  .mobile-header-search {
+    position: absolute;
+    top: 50%;
+    right: 72px;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+  }
+}
