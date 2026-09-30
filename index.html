@@ -130,6 +130,84 @@
     }
     .animate-float { animation: float 6s ease-in-out infinite; }
 
+    @media (max-width: 768px) {
+      main {
+        padding-top: 72px;
+      }
+
+      main > section {
+        min-height: 100svh;
+        padding: 48px 24px 40px;
+      }
+
+      main > section > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      main > section > div > div:first-child,
+      main > section > div > div:last-child {
+        display: contents;
+      }
+
+      main > section > div > div:last-child img {
+        order: 0;
+        width: 55%;
+        max-width: 240px;
+        height: auto;
+        margin-bottom: 40px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 40px rgba(34, 211, 238, 0.35));
+        animation: hero-float 4s ease-in-out infinite;
+      }
+
+      main > section h1 {
+        order: 1;
+        margin: 0 0 16px;
+        font-size: clamp(28px, 8vw, 34px);
+        line-height: 1.2;
+      }
+
+      main > section p {
+        order: 2;
+        max-width: 320px;
+        margin: 0 auto 32px;
+        color: #9aa0aa;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      main > section > div > div:first-child > div {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+
+      main > section .outer-cont {
+        width: 100%;
+        max-width: 280px;
+        min-width: 0;
+        min-height: 48px;
+        padding: 14px 32px;
+        border-radius: 12px;
+        font-size: 16px;
+      }
+
+      #particles-js {
+        opacity: 0.5;
+      }
+
+      @keyframes hero-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+    }
+
   </style>
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="512x512" href="assets/20251130_140434_0000~2.jpg">
