@@ -12,30 +12,192 @@
 	<style>
 		body { font-family: 'Space Grotesk', sans-serif; background: radial-gradient(ellipse at 15% 0%, rgba(34,211,238,.09), transparent 34rem), radial-gradient(ellipse at 90% 20%, rgba(139,92,246,.08), transparent 32rem), #050711; }
 	</style>
-	<link rel="stylesheet" href="assets/css/mobile-header.css" />
 </head>
 <body class="min-h-screen text-white antialiased">
-	<header class="sticky top-0 z-20 border-b border-white/10 bg-[#050711]/90 backdrop-blur-xl">
-		<div class="mx-auto flex w-full max-w-screen-2xl items-center justify-start gap-8 px-6 py-4 sm:px-8 lg:px-12">
-			<a href="index.html" class="text-xl font-semibold">Orecube<span class="text-cyan-300">.</span></a>
-			<nav aria-label="Main navigation" class="hidden items-center gap-5 text-sm text-gray-300 lg:flex">
-				<a href="research.html" class="text-white">Research</a><a href="products.html" class="transition hover:text-white">Products</a><a href="company.html" class="transition hover:text-white">Company</a><a href="news.html" class="transition hover:text-white">News</a><a href="about.html" class="transition hover:text-white">About</a>
-			</nav>
-			<div class="ml-auto flex items-center gap-3">
-				<details class="relative lg:hidden">
-					<summary aria-label="Open navigation menu" class="cursor-pointer list-none rounded-md px-3 py-2 text-sm text-gray-200 hover:bg-white/10">Menu</summary>
-					<nav aria-label="Mobile navigation" class="absolute right-0 top-12 z-30 grid min-w-48 gap-1 rounded-lg border border-white/10 bg-[#0b0e18] p-2 text-sm text-gray-200 shadow-xl">
-						<a href="research.html" class="rounded px-3 py-2 text-white">Research</a><a href="products.html" class="rounded px-3 py-2 hover:bg-white/10">Products</a><a href="company.html" class="rounded px-3 py-2 hover:bg-white/10">Company</a><a href="news.html" class="rounded px-3 py-2 hover:bg-white/10">News</a><a href="about.html" class="rounded px-3 py-2 hover:bg-white/10">About</a>
-					</nav>
-				</details>
-				<a href="https://luminousai.vercel.app/" class="inline-flex items-center rounded-full border border-white bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-gray-100">Try Lumina</a>
-			</div>
-		</div>
-			<button type="button" class="mobile-header-search hidden rounded-md text-gray-200 hover:bg-white/10 md:hidden" aria-label="Search" aria-controls="mobileSearchOverlay" aria-expanded="false" data-search-open><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" /></svg></button>
-	</header>
-	<div id="mobileSearchOverlay" class="fixed inset-0 z-50 hidden md:hidden" role="dialog" aria-modal="true" aria-label="Site search"><button type="button" class="absolute inset-0 bg-black/70" data-search-close aria-label="Close search"></button><div class="absolute inset-x-6 top-24 mx-auto flex max-w-2xl items-center gap-3"><label class="sr-only" for="mobileSearchInput">Search</label><input id="mobileSearchInput" type="search" placeholder="Search" class="w-full rounded-full border border-white/10 bg-[#101521] px-4 py-3 text-white placeholder-white/60 focus:outline-none" /><button type="button" class="rounded-md p-3 text-white hover:bg-white/10" data-search-close aria-label="Close search">&times;</button></div></div>
-	<button id="mobileMenuBackdrop" type="button" class="fixed inset-0 z-40 hidden bg-black/30 backdrop-blur-sm md:hidden" aria-label="Close navigation menu"></button>
-	<main>
+	<!-- ===== Header (Fixed Search Buttons) ===== -->
+<header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-white/10 text-white shadow-sm">
+  <div class="mx-auto w-full max-w-screen-2xl px-6 py-3 sm:px-8 lg:px-12 flex items-center justify-between">
+
+    <div class="flex items-center gap-6 xl:gap-10">
+<!-- Logo -->
+<a href="./index.html" class="flex items-center gap-3">
+  <span id="logoText" class="text-2xl font-semibold tracking-tight">
+  Orecube
+</span>
+  <img id="logoIcon" src="assets/20251202_190126_0000.png"
+       alt="Orecube Logo" class="w-6 h-6 rounded-full"/>
+</a>
+
+    <!-- ===== Desktop Navigation Links ===== -->
+  <nav aria-label="Main navigation" class="hidden lg:flex items-center gap-4 xl:gap-7 text-sm font-medium">
+  <a href="research.html" class="nav-link text-gray-300 hover:text-white transition">Research</a>
+  <a href="products.html" class="nav-link text-gray-300 hover:text-white transition">Products</a>
+  <a href="company.html" class="nav-link text-gray-300 hover:text-white transition">Company</a>
+  <a href="news.html" class="nav-link text-gray-300 hover:text-white transition">News</a>
+  <a href="about.html" class="nav-link text-gray-300 hover:text-white transition">About</a>
+</nav>
+    </div>
+
+<!-- Desktop Right Controls -->
+<div class="hidden md:flex items-center gap-4 ml-auto">
+  <!-- Search icon (desktop) -->
+  <button id="desktopSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+    </svg>
+  </button>
+
+  <!-- Lumina (desktop) -->
+  <a href="https://luminousai.vercel.app/"
+      class="inline-flex items-center justify-center rounded-full border border-white bg-white px-5 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:-translate-y-0.5 hover:bg-gray-100 hover:shadow-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+     Try Lumina
+  </a>
+</div>
+
+<!-- Mobile Controls (search + menu) -->
+<div class="flex items-center gap-3 md:hidden">
+  <!-- Mobile search icon -->
+  <button id="mobileSearchBtn" class="p-2 rounded-md hover:bg-white/10" aria-label="Search">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+    </svg>
+  </button>
+
+  <!-- Mobile menu button -->
+  <button id="mobileMenuBtn"
+          class="flex flex-col items-end justify-center w-8 h-8 space-y-2 focus:outline-none">
+    <span class="block w-7 h-[1.5px] bg-white rounded"></span>
+    <span class="block w-5 h-[1.5px] bg-white rounded"></span>
+  </button>
+</div>
+
+  </div>
+</header>
+
+<!-- Overlay for drawer (blurred) -->
+<div id="overlay" class="hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40"></div>
+
+<!-- Mobile drawer -->
+<aside id="mobileMenu"
+  class="fixed top-16 left-0 h-[calc(100%-4rem)] w-80 bg-black text-white
+         transform -translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col">
+
+<nav aria-label="Mobile navigation" class="flex flex-col px-6 gap-4 mt-6 font-sans text-[17px]">
+  <a href="research.html" class="block font-medium text-gray-300 hover:text-white transition">Research</a>
+  <a href="products.html" class="block font-medium text-gray-300 hover:text-white transition">Products</a>
+  <a href="company.html" class="block font-medium text-gray-300 hover:text-white transition">Company</a>
+  <a href="news.html" class="block font-medium text-gray-300 hover:text-white transition">News</a>
+  <a href="about.html" class="block font-medium text-gray-300 hover:text-white transition">About</a>
+</nav>
+
+  <!-- Mobile Lumina Button -->
+  <div class="absolute bottom-6 right-6">
+   <a href="https://luminousai.vercel.app/"
+      class="inline-flex items-center justify-center rounded-full border border-white bg-white px-5 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:-translate-y-0.5 hover:bg-gray-100 hover:shadow-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+      Try Lumina
+    </a>
+  </div>
+</aside>
+
+<!-- Mobile search overlay (shared for both desktop + mobile) -->
+<div id="searchOverlay" class="hidden fixed inset-0 z-50 flex items-start pt-24 px-6">
+  <div class="absolute inset-0 bg-black/60" id="searchOverlayBg"></div>
+  <div class="relative z-50 w-full max-w-2xl mx-auto">
+    <div class="flex items-center gap-3">
+      <input id="mobileSearchInput" type="search" placeholder="Search"
+             class="w-full px-4 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder-white/60 focus:outline-none" />
+      <button id="closeSearch" class="p-3 rounded-md hover:bg-white/5 text-white">✕</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .logo-transition { transition: opacity .25s ease, transform .25s ease; transform-origin: left center; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('overlay');
+
+  const desktopSearchBtn = document.getElementById('desktopSearchBtn');
+  const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchOverlayBg = document.getElementById('searchOverlayBg');
+  const closeSearch = document.getElementById('closeSearch');
+  const mobileSearchInput = document.getElementById('mobileSearchInput');
+
+  const logoText = document.getElementById('logoText');
+  const logoIcon = document.getElementById('logoIcon');
+
+  // Ensure initial logo state
+  if (logoIcon) logoIcon.classList.add('hidden');
+
+  // Logo swap on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      logoText.style.opacity = '0';
+      logoText.style.transform = 'scale(.92)';
+      setTimeout(() => {
+        logoText.classList.add('hidden');
+        logoIcon.classList.remove('hidden');
+      }, 160);
+    } else {
+      logoIcon.classList.add('hidden');
+      logoText.classList.remove('hidden');
+      logoText.style.opacity = '1';
+      logoText.style.transform = 'scale(1)';
+    }
+  }, { passive: true });
+
+  // Drawer open / close
+  function openDrawer() {
+    mobileMenu.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    mobileMenu.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('-translate-x-full')) openDrawer();
+    else closeDrawer();
+  });
+
+  overlay?.addEventListener('click', closeDrawer);
+
+  // Search overlay open/close (both desktop & mobile buttons)
+  function openSearch() {
+    searchOverlay.classList.remove('hidden');
+    setTimeout(() => mobileSearchInput?.focus(), 70);
+  }
+  function closeSearchOverlay() {
+    searchOverlay.classList.add('hidden');
+  }
+
+  desktopSearchBtn?.addEventListener('click', openSearch);
+  mobileSearchBtn?.addEventListener('click', openSearch);
+  closeSearch?.addEventListener('click', closeSearchOverlay);
+  searchOverlayBg?.addEventListener('click', closeSearchOverlay);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeDrawer();
+      closeSearchOverlay();
+    }
+  });
+});
+  </script>
+
+<main>
 		<section class="mx-auto w-full max-w-screen-2xl px-6 pb-20 pt-24 sm:px-8 lg:px-12 md:pb-28 md:pt-32">
 			<p class="mb-5 text-sm font-semibold uppercase text-cyan-300">Orecube / Research</p>
 			<h1 class="max-w-4xl text-5xl font-semibold leading-tight md:text-7xl">Research for useful, responsible AI.</h1>
@@ -80,6 +242,5 @@
 	<footer class="border-t border-white/10">
 		<div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-5 px-6 py-8 text-sm text-gray-400 sm:px-8 lg:px-12 md:flex-row md:items-center md:justify-between"><p>© 2026 Orecube</p><nav aria-label="Footer navigation" class="flex flex-wrap gap-x-5 gap-y-2"><a href="about.html" class="hover:text-white">About</a><a href="company.html" class="hover:text-white">Company</a><a href="news.html" class="hover:text-white">News</a><a href="index.html" class="hover:text-white">Home</a></nav></div>
 	</footer>
-	<script src="assets/js/mobile-header.js" defer></script>
 </body>
 </html>
