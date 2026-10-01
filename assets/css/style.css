@@ -1,18 +1,14 @@
 :root{
-  --bg: hsl(225 39% 4%);
-  --primary: hsl(197 100% 50%);
-  --secondary: hsl(262 83% 68%);
-  --accent: hsl(328 86% 70%);
+  --bg: #050505;
+  --primary: #a3a3a3;
+  --secondary: #a3a3a3;
+  --accent: #a3a3a3;
 }
 
 html,body{height:100%;}
 body{
-  background:
-    radial-gradient(1600px 800px at 20% 10%, rgba(34,211,238,0.06), transparent 40%),
-    radial-gradient(1200px 700px at 80% 70%, rgba(139,92,246,0.05), transparent 45%),
-    radial-gradient(1200px 700px at 40% 90%, rgba(244,114,182,0.05), transparent 45%),
-    var(--bg);
-  color:#e5e7eb;
+  background: var(--bg);
+  color:#e5e5e5;
 }
 
 .hero-background::after{
@@ -26,7 +22,7 @@ body{
 
 .css-particle{
   position:fixed; width:6px; height:6px; border-radius:9999px;
-  opacity:.8; filter:drop-shadow(0 0 8px currentColor);
+  opacity:.8; filter:none;
   animation:cssFloat 16s linear infinite;
   z-index:-1;
 }

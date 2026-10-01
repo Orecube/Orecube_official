@@ -28,10 +28,10 @@
   
   <style>
     :root {
-      --bg-dark: hsl(225, 39%, 4%);
-      --cyan: #22d3ee;
-      --purple: #8b5cf6;
-      --pink: #f472b6;
+      --bg-dark: #050505;
+      --cyan: #a3a3a3;
+      --purple: #a3a3a3;
+      --pink: #a3a3a3;
     }
 
     html,body{height:100%;}
@@ -56,7 +56,7 @@
 
     /* keep gradient-text if used */
     .gradient-text {
-      background: linear-gradient(to right, var(--cyan), var(--purple), var(--pink));
+      background: none;
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -78,35 +78,29 @@
       font-size: 1.1rem;
       cursor: pointer;
       position: relative;
-      background: #22d3ee;
+      background: #ffffff;
       border-radius: 12px;
-      color: #07111f;
+      color: #000000;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 24px rgba(34, 211, 238, 0.2);
+      box-shadow: none;
       text-decoration: none;
     }
-    .outer-cont:hover { background: #67e8f9; }
+    .outer-cont:hover { background: #d4d4d4; }
     .outer-cont::before {
       content: "";
       position: absolute;
       inset: 0;
       margin: auto;
       border-radius: 12px;
-      filter: blur(0);
+      display: none;
       z-index: -1;
-      background: conic-gradient(
-        #00000000 80deg,
-        #22d3ee,
-        #8b5cf6,
-        #f472b6,
-        #00000000 280deg
-      );
+      background: none;
       transition: all 0.3s ease;
     }
     .outer-cont:hover::before { filter: blur(15px); }
     .outer-cont:active::before { filter: blur(5px); transform: translateY(1px); }
     .outer-cont:active {
-      box-shadow: 0 4px 12px rgba(34, 211, 238, 0.2);
+      box-shadow: none;
       margin-top: 3px;
     }
 
@@ -162,7 +156,7 @@
         height: auto;
         margin-bottom: 40px;
         object-fit: contain;
-        filter: drop-shadow(0 0 40px rgba(34, 211, 238, 0.35));
+        filter: none;
         animation: hero-float 4s ease-in-out infinite;
       }
 
@@ -177,7 +171,7 @@
         order: 2;
         max-width: 320px;
         margin: 0 auto 32px;
-        color: #9aa0aa;
+        color: #a3a3a3;
         font-size: 16px;
         line-height: 1.6;
       }
@@ -212,6 +206,7 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="512x512" href="assets/20251130_140434_0000~2.jpg">
 <link rel="apple-touch-icon" href="assets/20251130_140434_0000~2.jpg">
+<link rel="stylesheet" href="/assets/css/neutral-theme.css">
 </head>
 <body class="relative font-sans">
 
@@ -431,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
     particlesJS("particles-js", {
       particles: {
         number: { value: 70 },
-        color: { value: ["#22d3ee", "#8b5cf6", "#f472b6"] },
+        color: { value: ["#a3a3a3"] },
         shape: { type: "circle" },
         opacity: {
           value: 0.7,
@@ -544,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Whether you’re a researcher, developer, or entrepreneur — Orecube is your partner in advancing safe and impactful AI.
       </p>
     </div>
-    <a href="/company.html" class="inline-flex shrink-0 items-center self-start rounded-lg bg-white px-6 py-3 font-medium text-black transition hover:bg-gray-200 md:self-auto">
+    <a href="/company.html" class="home-cta inline-flex shrink-0 items-center self-start rounded-lg bg-white px-6 py-3 font-medium text-black transition hover:bg-gray-200 md:self-auto">
       Learn about Orecube
     </a>
   </div>
