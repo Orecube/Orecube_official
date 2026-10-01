@@ -20,7 +20,7 @@
 <body class="min-h-screen text-white antialiased">
   <a class="skip-link" href="#main">Skip to content</a>
   <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-white/10 text-white shadow-sm">
-    <div class="mx-auto w-full max-w-screen-2xl px-6 py-3 sm:px-8 lg:px-12 flex items-center justify-between">
+    <div class="container flex items-center justify-between py-3">
       <div class="flex items-center gap-6 xl:gap-10">
         <a href="/index.html" class="flex items-center gap-3">
           <span id="logoText" class="text-2xl font-semibold tracking-tight">Orecube</span>
@@ -120,14 +120,14 @@
   </script>
 
   <main id="main">
-    <section class="page-shell hero" aria-labelledby="pageTitle">
+    <section class="container hero" aria-labelledby="pageTitle">
       <p class="eyebrow">Orecube / Research</p>
       <h1 id="pageTitle">Research for useful, responsible technology.</h1>
       <p class="hero-copy">We study how technology can help people learn, create, and solve meaningful problems—while keeping human agency, safety, access, and real-world impact in view.</p>
       <div class="hero-actions"><a class="button-primary" href="#library">Explore research</a><a class="button-secondary" href="#principles">Our approach</a></div>
     </section>
 
-    <section class="page-shell section library-section" id="library" aria-labelledby="libraryTitle">
+    <section class="container section library-section" id="library" aria-labelledby="libraryTitle">
         <div class="section-heading"><h2 id="libraryTitle">Browse research</h2><p id="resultCount" aria-live="polite"></p></div>
         <form id="researchFilters" role="search" onsubmit="return false">
           <label class="search-field">Search research<input id="researchSearch" type="search" placeholder="Title, summary, product, topic" autocomplete="off"></label>
@@ -146,7 +146,7 @@
         <div class="empty-state" id="emptyState" hidden><h3>No research matches these filters.</h3><p>Try another search or clear one or more filters to see available publications.</p></div>
     </section>
 
-    <section class="page-shell section approach-section" id="principles" aria-labelledby="principlesTitle">
+    <section class="container section approach-section" id="principles" aria-labelledby="principlesTitle">
       <div class="principles-layout">
         <div class="principles-heading"><p class="section-kicker">Research principles</p><h2 id="principlesTitle">How we approach the work.</h2></div>
         <ul class="principle-list">
@@ -170,13 +170,13 @@
   </main>
 
   <footer id="researchFooter" class="bg-black text-gray-400 pt-16 pb-8 border-t border-white/10">
-    <div class="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-10 px-6 sm:grid-cols-2 sm:px-8 md:grid-cols-4 lg:px-12">
+    <div class="container grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
       <div><h3 class="text-white text-lg font-semibold mb-4">Orecube</h3><p class="text-sm leading-relaxed">Empowering innovation with AI-driven solutions in research, safety, products, and beyond. Bringing technology closer to humanity.</p></div>
       <div><h3 class="text-white text-lg font-semibold mb-4">Products</h3><ul class="space-y-2"><li><a href="/models.html" class="hover:text-white transition">GPT Models</a></li><li><a href="/products.html" class="hover:text-white transition">API Platform</a></li><li><a href="/products.html" class="hover:text-white transition">AI Tools</a></li><li><a href="/index.html" class="hover:text-white transition">Yui Companion</a></li></ul></div>
       <div><h3 class="text-white text-lg font-semibold mb-4">Resources</h3><ul class="space-y-2"><li><a href="/research.html" class="hover:text-white transition">Research</a></li><li><a href="/research.html#safety" class="hover:text-white transition">Safety</a></li><li><a href="/news.html" class="hover:text-white transition">News &amp; Updates</a></li><li><a href="/news.html#perspectives" class="hover:text-white transition">Blog</a></li><li><a href="#" class="hover:text-white transition">Documentation</a></li></ul></div>
       <div><h3 class="text-white text-lg font-semibold mb-4">Company</h3><ul class="space-y-2"><li><a href="/company.html" class="hover:text-white transition">About Us</a></li><li><a href="#" class="hover:text-white transition">Careers</a></li><li><a href="#" class="hover:text-white transition">Contact</a></li><li><a href="#" class="hover:text-white transition">Privacy Policy</a></li></ul></div>
     </div>
-    <div class="mx-auto mt-12 flex w-full max-w-screen-2xl flex-col items-center justify-between border-t border-white/10 px-6 pt-6 sm:px-8 lg:px-12 md:flex-row">
+    <div class="container footer-divider mt-12 flex flex-col items-center justify-between pt-6 md:flex-row">
       <p class="text-sm">&copy; 2025 Orecube. All rights reserved.</p>
       <div class="mt-6 flex justify-center space-x-6">
         <a href="https://www.facebook.com/share/17scqxzYgr/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-blue-500 transition" aria-label="Facebook"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.657-4.788 1.325 0 2.462.098 2.795.142v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.764v2.313h3.588l-.467 3.622h-3.121V24h6.116c.73 0 1.324-.593 1.324-1.324V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>

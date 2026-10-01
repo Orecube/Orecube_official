@@ -15,6 +15,8 @@
   --research-cyan: #a3a3a3;
   --research-pink: #a3a3a3;
   --research-violet: #a3a3a3;
+  --content-max: 1650px;
+  --page-gutter: clamp(24px, 6.6vw, 127px);
   color-scheme: dark;
 }
 
@@ -52,6 +54,43 @@ html, body {
   box-shadow: none !important;
 }
 
+.container {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: calc(var(--content-max) + 2 * var(--page-gutter)) !important;
+  margin-inline: auto !important;
+  padding-inline: var(--page-gutter) !important;
+}
+
+.container.footer-divider {
+  position: relative;
+  border-top: 0 !important;
+}
+
+.container.footer-divider::before {
+  position: absolute;
+  top: 0;
+  right: var(--page-gutter);
+  left: var(--page-gutter);
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  content: "";
+}
+
+form[role="search"], .search-field, .filter-details, .filter-grid,
+.search-field input, .filter-field input, .filter-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+hr {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 32px 0;
+  border: 0;
+  border-top: 1px solid #262626;
+}
+
 [class*="text-slate-"] { color: #a3a3a3 !important; }
 [class*="text-slate-950"] { color: #000000 !important; }
 [class*="bg-slate-"] { background-color: #171717 !important; }
@@ -69,6 +108,18 @@ html, body {
 [class*="bg-gray-"] { background-color: #171717 !important; }
 .home-cta { background-color: #ffffff !important; color: #000000 !important; }
 .home-cta:hover { background-color: #d4d4d4 !important; color: #000000 !important; }
+a[class*="bg-white"][class*="text-black"],
+a[class*="bg-cyan-"][class*="text-slate-950"] {
+  border-color: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+a[class*="bg-white"][class*="text-black"]:hover,
+a[class*="bg-cyan-"][class*="text-slate-950"]:hover {
+  border-color: #d4d4d4 !important;
+  background-color: #d4d4d4 !important;
+  color: #000000 !important;
+}
 [class*="border-gray-"] { border-color: #333333 !important; }
 header a[href*="luminousai.vercel.app"], #mobileMenu a[href*="luminousai.vercel.app"] {
   border-color: #ffffff !important;
