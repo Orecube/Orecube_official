@@ -60,7 +60,7 @@
     link.textContent = item.title;
     title.append(link);
     content.append(title);
-    content.append(makeText('p', 'publication-summary', `${item.summary} ${item.cardDetail}`));
+    content.append(makeText('p', 'publication-summary', `${item.summary}${item.cardDetail ? ` ${item.cardDetail}` : ''}`));
     const tags = document.createElement('ul');
     tags.className = 'tag-list';
     tags.setAttribute('aria-label', 'Topics');

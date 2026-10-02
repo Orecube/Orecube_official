@@ -139,6 +139,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .article-toc a:hover { color: white; }
 .article-content { min-width: 0; color: #d4d4d4; font-family: 'Space Grotesk', sans-serif; font-size: 17px; line-height: 1.85; }
 .article-content p { margin: 0 0 21px; }
+.article-content ul { margin: 0 0 24px; padding-left: 24px; }
+.article-content li { margin-bottom: 8px; }
+.article-content blockquote { margin: 26px 0; border-left: 2px solid var(--research-line); padding-left: 20px; color: white; font-weight: 500; }
+.article-content h3 { margin: 24px 0 10px; color: white; font-size: 19px; line-height: 1.4; font-weight: 500; }
 .article-section { scroll-margin-top: 100px; margin: 0 0 48px; }
 .article-section h2 { margin: 0 0 17px; color: white; font-size: 28px; line-height: 1.25; font-weight: 500; }
 .references { width: 100%; box-sizing: border-box; margin-top: 32px; border-top: 1px solid var(--research-line); padding-top: 32px; }

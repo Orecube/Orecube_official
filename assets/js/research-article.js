@@ -1,11 +1,52 @@
 (() => {
-  const publication = (window.ORECUBE_RESEARCH_PUBLICATIONS || []).find((item) => item.slug.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, ''));
+  const publications = window.ORECUBE_RESEARCH_PUBLICATIONS || [];
+  const publication = publications.find((item) => item.slug.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, ''));
   const article = document.getElementById('articleContent');
   const contents = document.getElementById('tableOfContents');
   const references = document.getElementById('referencesList');
   const relatedList = document.getElementById('relatedResearchList');
   const relatedEmpty = document.getElementById('relatedResearchEmpty');
   if (!publication || !article || !contents || !references || !relatedList || !relatedEmpty) return;
+
+  function renderBlocks(container, blocks) {
+    blocks.forEach((block) => {
+      if (block.type === 'list') {
+        const list = document.createElement('ul');
+        block.items.forEach((text) => {
+          const item = document.createElement('li');
+          item.textContent = text;
+          list.append(item);
+        });
+        container.append(list);
+        return;
+      }
+
+      if (block.type === 'quote') {
+        const quote = document.createElement('blockquote');
+        quote.textContent = block.text;
+        container.append(quote);
+        return;
+      }
+
+      if (block.type === 'subsection') {
+        const subsection = document.createElement('section');
+        const heading = document.createElement('h3');
+        heading.textContent = block.heading;
+        subsection.append(heading);
+        block.paragraphs.forEach((text) => {
+          const paragraph = document.createElement('p');
+          paragraph.textContent = text;
+          subsection.append(paragraph);
+        });
+        container.append(subsection);
+        return;
+      }
+
+      const paragraph = document.createElement('p');
+      paragraph.textContent = block.text;
+      container.append(paragraph);
+    });
+  }
 
   const date = new Date(`${publication.publicationDate}T12:00:00`).toLocaleDateString('en-GB', {
     day: 'numeric', month: 'long', year: 'numeric'
@@ -15,8 +56,26 @@
   document.getElementById('articleAuthor').textContent = publication.author;
   document.getElementById('articleReadingTime').textContent = publication.readingTime;
   document.getElementById('articleTitle').textContent = publication.title;
-  document.getElementById('articleStandfirst').textContent = publication.summary;
-  document.title = 'Building a Better Way to Learn | Orecube Research';
+  document.getElementById('articleStandfirst').textContent = publication.standfirst || publication.summary;
+  document.title = publication.seoTitle || `${publication.title} | Orecube Research`;
+
+  const publisher = document.getElementById('articlePublisher');
+  if (publisher) publisher.textContent = publication.publisher;
+  const affiliation = document.getElementById('articleAffiliation');
+  if (affiliation) affiliation.textContent = publication.product || publication.initiative || '';
+  const affiliationLabel = document.getElementById('articleAffiliationLabel');
+  if (affiliationLabel) affiliationLabel.textContent = publication.product ? 'Product:' : 'Product or initiative:';
+  const editorialLabel = document.getElementById('articleEditorialLabel');
+  if (editorialLabel) editorialLabel.textContent = publication.editorialLabel || 'Orecube Research Synthesis';
+
+  const description = publication.seoDescription || publication.summary;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
+  document.querySelector('meta[property="article:published_time"]')?.setAttribute('content', publication.publicationDate);
+  document.querySelector('meta[property="article:modified_time"]')?.setAttribute('content', publication.lastUpdatedDate || publication.publicationDate);
+  document.querySelector('meta[property="article:author"]')?.setAttribute('content', publication.author);
+  document.querySelector('link[rel="canonical"]')?.setAttribute('href', publication.canonicalUrl || publication.slug);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -24,16 +83,27 @@
     headline: publication.title,
     description: publication.summary,
     datePublished: publication.publicationDate,
+    dateModified: publication.lastUpdatedDate || publication.publicationDate,
     author: { '@type': 'Organization', name: publication.author },
     publisher: { '@type': 'Organization', name: publication.publisher },
     articleSection: publication.category,
     keywords: publication.tags.join(', '),
     mainEntityOfPage: window.location.href
   };
-  const schemaScript = document.createElement('script');
+  const schemaScript = document.getElementById('articleStructuredData') || document.createElement('script');
+  schemaScript.id = 'articleStructuredData';
   schemaScript.type = 'application/ld+json';
   schemaScript.textContent = JSON.stringify(schema);
-  document.head.append(schemaScript);
+  if (!schemaScript.isConnected) document.head.append(schemaScript);
+
+  const articleLabel = document.getElementById('breadcrumbTitle');
+  if (articleLabel) articleLabel.textContent = publication.title;
+  if (publication.introduction) {
+    const introduction = document.createElement('div');
+    introduction.className = 'article-introduction';
+    renderBlocks(introduction, publication.introduction);
+    article.append(introduction);
+  }
 
   publication.content.forEach((section) => {
     const sectionElement = document.createElement('section');
@@ -42,11 +112,8 @@
     const heading = document.createElement('h2');
     heading.textContent = section.heading;
     sectionElement.append(heading);
-    section.paragraphs.forEach((text) => {
-      const paragraph = document.createElement('p');
-      paragraph.textContent = text;
-      sectionElement.append(paragraph);
-    });
+    const blocks = section.blocks || section.paragraphs.map((text) => ({ type: 'paragraph', text }));
+    renderBlocks(sectionElement, blocks);
     article.append(sectionElement);
 
     const link = document.createElement('a');

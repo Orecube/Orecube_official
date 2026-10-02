@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Human-centered AI workflow</title>
+  <desc id="description">A person sets direction, AI provides assistance, and the person retains judgment.</desc>
+  <rect width="1600" height="900" fill="#080808"/>
+  <path d="M340 450h350m210 0h350" fill="none" stroke="#666" stroke-width="2"/>
+  <path d="m665 438 25 12-25 12m210-24-25 12 25 12m325-24 25 12-25 12" fill="none" stroke="#aaa" stroke-width="2"/>
+  <g fill="#111" stroke="#aaa" stroke-width="2">
+    <circle cx="250" cy="405" r="54"/>
+    <path d="M144 622c0-70 47-121 106-121s106 51 106 121v26H144z"/>
+    <circle cx="800" cy="450" r="122" fill="#0d0d0d"/>
+    <circle cx="1350" cy="405" r="54"/>
+    <path d="M1244 622c0-70 47-121 106-121s106 51 106 121v26h-212z"/>
+  </g>
+  <g fill="none" stroke="#888" stroke-width="2">
+    <path d="m740 410 52-43 58 40-25 75-72 1z"/>
+    <path d="m740 410 13 73m39-116 33 115m25-75-58 35m-52 43 72-1"/>
+    <circle cx="740" cy="410" r="7" fill="#ddd" stroke="none"/>
+    <circle cx="792" cy="367" r="7" fill="#ddd" stroke="none"/>
+    <circle cx="850" cy="407" r="7" fill="#ddd" stroke="none"/>
+    <circle cx="825" cy="482" r="7" fill="#ddd" stroke="none"/>
+    <circle cx="753" cy="483" r="7" fill="#ddd" stroke="none"/>
+  </g>
+  <g fill="#f2f2f2" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="250" y="735" font-size="28" letter-spacing="2">PERSON SETS DIRECTION</text>
+    <text x="800" y="650" font-size="28" letter-spacing="2">AI PROVIDES SUPPORT</text>
+    <text x="1350" y="735" font-size="28" letter-spacing="2">PERSON RETAINS JUDGMENT</text>
+  </g>
+  <g fill="#888" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">
+    <text x="250" y="775">Goals and context</text>
+    <text x="800" y="690">Information and assistance</text>
+    <text x="1350" y="775">Review and choice</text>
+  </g>
+</svg>
