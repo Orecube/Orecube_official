@@ -118,12 +118,11 @@
             if (!leftMouseHeld) return;
 
             event.preventDefault();
-            const zoomAmount = event.deltaY * 0.012;
-            camera.position.addScaledVector(camera.position, zoomAmount / camera.position.length());
-
-            const distance = camera.position.length();
-            const clampedDistance = THREE.MathUtils.clamp(distance, controls.minDistance, controls.maxDistance);
-            camera.position.setLength(clampedDistance);
+            const offset = camera.position.clone().sub(controls.target);
+            const distance = offset.length();
+            const zoomDistance = THREE.MathUtils.clamp(distance + event.deltaY * 0.012, controls.minDistance, controls.maxDistance);
+            camera.position.copy(controls.target).addScaledVector(offset.normalize(), zoomDistance);
+            controls.update();
         }, { passive: false });
 
         const composer = new EffectComposer(renderer);

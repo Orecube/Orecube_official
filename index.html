@@ -234,8 +234,8 @@
       z-index: 1;
       pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.64) 34%, rgba(0,0,0,.12) 72%, rgba(0,0,0,.28) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 48%, rgba(0,0,0,.72) 100%);
+        radial-gradient(ellipse 42% 62% at 18% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.20) 42%, rgba(0,0,0,0) 78%),
+        linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,0) 58%, rgba(0,0,0,.30) 100%);
     }
 
     .orecube-hero__content {
@@ -349,10 +349,6 @@
         margin-top: 28px;
       }
 
-      .orecube-hero::after {
-        background:
-          linear-gradient(180deg, rgba(0,0,0,.76) 0%, rgba(0,0,0,.52) 34%, rgba(0,0,0,.08) 74%, rgba(0,0,0,.62) 100%);
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
