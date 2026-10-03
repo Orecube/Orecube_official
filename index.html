@@ -331,24 +331,73 @@
     }
 
     @media (max-width: 767px) {
+      .orecube-hero {
+        min-height: max(680px, calc(100svh - var(--header-height)));
+      }
+
       .orecube-hero__content {
         align-items: flex-start;
-        padding: 72px 24px 64px;
+        padding: max(clamp(88px, 14svh, 126px), calc(var(--measured-header-height, 56px) + 32px)) 20px 56px;
       }
 
       .orecube-hero__copy {
-        width: min(100%, 520px);
+        width: min(100%, 360px);
+      }
+
+      .orecube-hero__eyebrow {
+        margin-bottom: 18px;
+        font-size: 10px;
+        letter-spacing: .12em;
+      }
+
+      .orecube-hero h1 {
+        max-width: 340px;
+        font-size: clamp(2.35rem, 10.5vw, 3.2rem);
+        line-height: 1.02;
+        letter-spacing: -.045em;
+        font-weight: 400;
+        text-wrap: balance;
       }
 
       .orecube-hero__description {
-        margin-top: 20px;
+        max-width: 330px;
+        margin-top: 18px;
+        font-size: .98rem;
+        line-height: 1.5;
       }
 
       .orecube-hero__actions {
+        align-items: center;
+        justify-content: flex-start;
         gap: 10px;
-        margin-top: 28px;
+        margin-top: 26px;
       }
 
+      .orecube-hero__actions a {
+        min-height: 44px;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .orecube-hero__content {
+        padding-inline: 18px;
+      }
+
+      .orecube-hero__copy {
+        width: 100%;
+      }
+
+      .orecube-hero__actions {
+        align-items: stretch;
+        flex-direction: column;
+        width: min(100%, 280px);
+      }
+
+      .orecube-hero__actions a {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -599,6 +648,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   </script>
   <script type="module" src="/assets/js/orecube-cube-network.js"></script>
+  <script>
+    (() => {
+      const header = document.getElementById('mainHeader');
+      const hero = document.getElementById('orecube-hero');
+      if (!header || !hero) return;
+
+      const updateHeaderHeight = () => {
+        hero.style.setProperty('--measured-header-height', `${header.getBoundingClientRect().height}px`);
+      };
+      updateHeaderHeight();
+      if ('ResizeObserver' in window) new ResizeObserver(updateHeaderHeight).observe(header);
+    })();
+  </script>
 
 
 <!-- Image Left, Text Right -->

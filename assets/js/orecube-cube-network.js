@@ -103,6 +103,17 @@
         controls.enablePan = false;
         renderer.domElement.style.touchAction = 'pan-y';   // vertical swipes keep scrolling on phones
 
+        const mobileViewport = window.matchMedia('(max-width: 767px)');
+        function updateViewportControls() {
+            const isMobile = mobileViewport.matches;
+            controls.enableRotate = true;
+            controls.enableZoom = isMobile;
+            controls.zoomSpeed = isMobile ? 0.85 : 0.6;
+            controls.rotateSpeed = isMobile ? 0.9 : 0.5;
+        }
+        updateViewportControls();
+        mobileViewport.addEventListener('change', updateViewportControls);
+
         let leftMouseHeld = false;
 
         renderer.domElement.addEventListener('pointerdown', (event) => {
