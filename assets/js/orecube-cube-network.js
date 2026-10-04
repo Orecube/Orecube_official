@@ -31,6 +31,27 @@
 
         const camera = new THREE.PerspectiveCamera(60, getSize().w / getSize().h, 0.1, 1200);
         camera.position.set(0, 5, 22);
+        const DEFAULT_CAMERA_STATE = {
+            position: new THREE.Vector3(0, 5.4, 25).setLength(33.5),
+            target: new THREE.Vector3(0, 0, 0)
+        };
+        const FINAL_CAMERA_STATE = {
+            position: new THREE.Vector3(0, 2.4, 11.2),
+            target: new THREE.Vector3(0, 0, 0)
+        };
+        const defaultPosition = new THREE.Vector3();
+        const defaultTarget = new THREE.Vector3();
+        const finalPosition = new THREE.Vector3();
+        const finalTarget = new THREE.Vector3();
+        const AUTO_ZOOM_DELAY = 5000;
+        const AUTO_ZOOM_DURATION = 2800;
+        let heroStartTime = 0;
+        let autoZoomStarted = false;
+        let autoZoomCompleted = reduceMotion;
+        let autoZoomStartTime = 0;
+        let autoZoomProgress = 0;
+        let cameraInitialized = false;
+        let userHasInteracted = false;
 
         const canvasElement = document.getElementById('neural-network-canvas'); // Get canvas element
         const renderer = new THREE.WebGLRenderer({ canvas: canvasElement, antialias: true, powerPreference: "high-performance" });
@@ -102,6 +123,9 @@
         controls.autoRotateSpeed = 0.15;
         controls.enablePan = false;
         renderer.domElement.style.touchAction = 'pan-y';   // vertical swipes keep scrolling on phones
+        controls.addEventListener('start', () => {
+            userHasInteracted = true;
+        });
 
         const mobileViewport = window.matchMedia('(max-width: 767px)');
         function updateViewportControls() {
@@ -117,7 +141,10 @@
         let leftMouseHeld = false;
 
         renderer.domElement.addEventListener('pointerdown', (event) => {
-            if (event.button === 0) leftMouseHeld = true;
+            if (event.button === 0) {
+                leftMouseHeld = true;
+                userHasInteracted = true;
+            }
         });
         window.addEventListener('pointerup', (event) => {
             if (event.button === 0) leftMouseHeld = false;
@@ -128,6 +155,7 @@
         renderer.domElement.addEventListener('wheel', (event) => {
             if (!leftMouseHeld) return;
 
+            userHasInteracted = true;
             event.preventDefault();
             const offset = camera.position.clone().sub(controls.target);
             const distance = offset.length();
@@ -692,6 +720,7 @@
             if (!config.paused) triggerPulse(e.clientX, e.clientY);
         });
         renderer.domElement.addEventListener('touchstart', (e) => {
+            userHasInteracted = true;
             if (e.touches.length > 0 && !config.paused) {
                 triggerPulse(e.touches[0].clientX, e.touches[0].clientY);
             }
@@ -735,6 +764,34 @@
 
         const clock = new THREE.Clock();
 
+        function easeInOutCubic(value) {
+            return value < 0.5
+                ? 4 * value * value * value
+                : 1 - Math.pow(-2 * value + 2, 3) / 2;
+        }
+
+        function updateAutomaticZoom(now) {
+            if (reduceMotion || autoZoomCompleted || userHasInteracted) return;
+
+            if (!autoZoomStarted) {
+                if (now - heroStartTime < AUTO_ZOOM_DELAY) return;
+                autoZoomStarted = true;
+                autoZoomStartTime = now;
+            }
+
+            const rawProgress = Math.min((now - autoZoomStartTime) / AUTO_ZOOM_DURATION, 1);
+            autoZoomProgress = easeInOutCubic(rawProgress);
+            camera.position.lerpVectors(defaultPosition, finalPosition, autoZoomProgress);
+            controls.target.lerpVectors(defaultTarget, finalTarget, autoZoomProgress);
+
+            if (rawProgress >= 1) {
+                camera.position.copy(finalPosition);
+                controls.target.copy(finalTarget);
+                autoZoomProgress = 1;
+                autoZoomCompleted = true;
+            }
+        }
+
         function animate() {
             requestAnimationFrame(animate);
             if (!visible || document.hidden) return;     // save battery when the hero is off-screen
@@ -747,6 +804,7 @@
                 .forEach(m => { if (m) m.material.uniforms.uTime.value = t; });
 
             updateShow(t);
+            updateAutomaticZoom(performance.now());
 
             {   // where is the cube on screen right now?
                 const pr = renderer.getPixelRatio(), { w, h } = getSize();
@@ -767,6 +825,7 @@
             createNetworkVisualization(config.currentFormation, config.densityFactor);
             updateTheme(config.activePaletteIndex);
             onWindowResize();
+            heroStartTime = performance.now();
             animate();
         }
 
@@ -774,8 +833,31 @@
         function onWindowResize() {
             const { w, h } = getSize();
             camera.aspect = w / h;
-            camera.position.setLength(22.6 * Math.min(2.2, Math.max(1, 1.1 / camera.aspect)));
             camera.updateProjectionMatrix();
+
+            const responsiveScale = Math.min(1.35, Math.max(1, 1.1 / camera.aspect));
+            defaultTarget.copy(DEFAULT_CAMERA_STATE.target);
+            finalTarget.copy(FINAL_CAMERA_STATE.target);
+            defaultPosition.copy(DEFAULT_CAMERA_STATE.position)
+                .sub(DEFAULT_CAMERA_STATE.target)
+                .multiplyScalar(responsiveScale)
+                .add(DEFAULT_CAMERA_STATE.target);
+            finalPosition.copy(FINAL_CAMERA_STATE.position)
+                .sub(FINAL_CAMERA_STATE.target)
+                .multiplyScalar(responsiveScale)
+                .add(FINAL_CAMERA_STATE.target);
+            controls.minDistance = Math.min(12, finalPosition.distanceTo(finalTarget) * 0.85);
+
+            if (!cameraInitialized) {
+                camera.position.copy(defaultPosition);
+                controls.target.copy(defaultTarget);
+                cameraInitialized = true;
+            } else if (!userHasInteracted) {
+                camera.position.lerpVectors(defaultPosition, finalPosition, autoZoomProgress);
+                controls.target.lerpVectors(defaultTarget, finalTarget, autoZoomProgress);
+            }
+
+            controls.update();
             renderer.setSize(w, h, false);
             composer.setSize(w, h);
             bloomPass.resolution.set(w, h);
