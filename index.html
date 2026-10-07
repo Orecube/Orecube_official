@@ -618,8 +618,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     </section>
-  </main>
-
   <!-- Particle Config -->
   <script>
     particlesJS("particles-js", {
@@ -663,100 +661,571 @@ document.addEventListener('DOMContentLoaded', () => {
   </script>
 
 
-<!-- Image Left, Text Right -->
-<section class="container grid grid-cols-1 items-center gap-6 py-20 md:grid-cols-2">
-  <div>
-    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=85" alt="Scientists conducting laboratory research" class="w-full rounded-xl shadow-lg">
-  </div>
-  <div>
-    <h2 class="text-4xl font-bold text-white mb-4">Advancing AI Responsibly</h2>
-    <p class="text-gray-300 mb-6">
-      We’re committed to building AI that is ethical, safe, and impactful — transforming industries while prioritizing people.
-    </p>
-    <a href="research.html#safety" class="px-6 py-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 transition">
-      Learn More
-    </a>
-  </div>
-</section>
+<style>
+  .home-content {
+    color: #fff;
+  }
 
-<!-- Text Left, Image Right -->
-<section class="container grid grid-cols-1 items-center gap-6 py-20 md:grid-cols-2">
-  <div>
-    <h2 class="text-4xl font-bold text-white mb-4">AI for Real-World Impact</h2>
-    <p class="text-gray-300 mb-6">
-      From healthcare to education, Orecube delivers intelligent solutions that create meaningful change in people’s lives.
-    </p>
-    <a href="/products.html" class="px-6 py-3 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition">
-      Explore Products
-    </a>
-  </div>
-  <div>
-    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85" alt="Healthcare professional using digital tools" class="w-full rounded-xl shadow-lg">
-  </div>
-</section>
+  .home-section {
+    padding-block: clamp(64px, 8vw, 112px);
+  }
 
-  <!-- Product Highlights -->
-<section class="container py-20">
-  <h2 class="text-4xl font-bold text-left text-white mb-12">What We Build</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="p-6 bg-white/5 rounded-xl border border-white/10">
-      <h3 class="text-2xl font-semibold text-white mb-3">AI Models</h3>
-      <p class="text-gray-400">State-of-the-art AI models trained for reasoning, creativity, and real-world problem solving.</p>
-    </div>
-    <div class="p-6 bg-white/5 rounded-xl border border-white/10">
-      <h3 class="text-2xl font-semibold text-white mb-3">API Platform</h3>
-      <p class="text-gray-400">Seamless developer tools to integrate Orecube AI into any product or workflow.</p>
-    </div>
-    <div class="p-6 bg-white/5 rounded-xl border border-white/10">
-      <h3 class="text-2xl font-semibold text-white mb-3">AI for Education</h3>
-      <p class="text-gray-400">Orecube AI-powered tools designed to enhance learning experiences worldwide.</p>
-    </div>
-  </div>
-</section>
-<!-- News Section -->
-<section class="container py-20">
-  <h2 class="text-4xl font-bold text-left text-white mb-12">Latest Updates</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <article class="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&h=600&q=85" alt="Close-up of a computer circuit board" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h3 class="text-xl font-semibold text-white mb-3">Orecube launches new AI model</h3>
-        <p class="text-gray-400 text-sm mb-4">Our latest model sets new benchmarks in reasoning and adaptability.</p>
-        <a href="/news.html" class="text-cyan-400 hover:underline">Read more →</a>
+  .home-section + .home-section {
+    border-top: 1px solid rgba(255, 255, 255, .1);
+  }
+
+  .home-section__intro {
+    max-width: 720px;
+  }
+
+  .home-section__eyebrow {
+    margin: 0 0 18px;
+    color: #a3a3a3;
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .home-section h2 {
+    max-width: 760px;
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 400;
+    letter-spacing: -.04em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .home-section__description {
+    max-width: 660px;
+    margin: 20px 0 0;
+    color: #b3b3b3;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .home-build__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    margin-top: 54px;
+  }
+
+  .home-card {
+    min-width: 0;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+  }
+
+  .home-card h3,
+  .home-step h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -.025em;
+    line-height: 1.3;
+  }
+
+  .home-card p,
+  .home-step p {
+    margin: 12px 0 0;
+    color: #a3a3a3;
+    line-height: 1.65;
+  }
+
+  .home-text-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    margin-top: 16px;
+    color: #fff;
+    font-size: .925rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: #737373;
+    text-underline-offset: 5px;
+  }
+
+  .home-text-link:hover {
+    text-decoration-color: #fff;
+  }
+
+  .home-process__steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 52px;
+    border-block: 1px solid #333;
+  }
+
+  .home-step {
+    min-width: 0;
+    padding: 26px 28px 30px;
+  }
+
+  .home-step:first-child {
+    padding-left: 0;
+  }
+
+  .home-step + .home-step {
+    border-left: 1px solid #333;
+  }
+
+  .home-step__number {
+    display: block;
+    margin-bottom: 24px;
+    color: #a3a3a3;
+    font-size: .8rem;
+    letter-spacing: .08em;
+  }
+
+  .home-feature {
+    border-block: 1px solid rgba(255, 255, 255, .1);
+    background: #090909;
+  }
+
+  .home-feature__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: clamp(36px, 7vw, 100px);
+    padding-block: clamp(64px, 8vw, 112px);
+  }
+
+  .home-feature__copy {
+    min-width: 0;
+  }
+
+  .home-feature__copy h2 {
+    max-width: 560px;
+  }
+
+  .home-feature__copy > p:not(.home-section__eyebrow) {
+    max-width: 520px;
+    margin: 20px 0 0;
+    color: #b3b3b3;
+    line-height: 1.7;
+  }
+
+  .home-feature__cta {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 26px;
+    padding: 0 20px;
+    border: 1px solid #fff;
+    background: #fff;
+    color: #050505;
+    font-size: .925rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color .2s ease, border-color .2s ease;
+  }
+
+  .home-feature__cta:hover {
+    border-color: #d4d4d4;
+    background: #d4d4d4;
+  }
+
+  .home-feature__visual {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    min-height: 300px;
+    aspect-ratio: 6 / 5;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: clamp(24px, 4vw, 48px);
+    border: 1px solid #333;
+    background: #0d0d0d;
+  }
+
+  .home-feature__visual::after {
+    position: absolute;
+    right: -15%;
+    bottom: -44%;
+    width: 78%;
+    aspect-ratio: 1;
+    border: 1px solid #303030;
+    border-radius: 50%;
+    content: "";
+  }
+
+  .home-feature__visual-label,
+  .home-feature__visual-name,
+  .home-feature__visual-note {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home-feature__visual-label,
+  .home-feature__visual-note {
+    margin: 0;
+    color: #a3a3a3;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .home-feature__visual-name {
+    margin: 0;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 400;
+    letter-spacing: -.07em;
+    line-height: .95;
+  }
+
+  .home-trust__principles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .home-editorial__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .home-editorial-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 18px;
+    border-top: 1px solid #333;
+  }
+
+  .home-editorial-card__meta {
+    margin: 0 0 18px;
+    color: #a3a3a3;
+    font-size: .7rem;
+    letter-spacing: .1em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .home-editorial-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -.025em;
+    line-height: 1.35;
+  }
+
+  .home-editorial-card__description {
+    margin: 12px 0 0;
+    color: #a3a3a3;
+    line-height: 1.65;
+  }
+
+  .home-editorial-card__date {
+    margin: 16px 0 0;
+    color: #a3a3a3;
+    font-size: .8rem;
+  }
+
+  .home-editorial-card .home-text-link {
+    margin-top: auto;
+    padding-top: 14px;
+  }
+
+  .home-editorial__all {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    margin-top: 34px;
+    padding-top: 20px;
+    border-top: 1px solid #262626;
+  }
+
+  .home-final-cta {
+    padding-block: clamp(56px, 7vw, 88px);
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    background: #090909;
+  }
+
+  .home-cta__inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .home-cta__copy {
+    max-width: 700px;
+  }
+
+  .home-cta__copy p:not(.home-section__eyebrow) {
+    max-width: 620px;
+    margin: 18px 0 0;
+    color: #b3b3b3;
+    line-height: 1.7;
+  }
+
+  .home-cta__links {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 24px;
+  }
+
+  .home-cta__primary {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border: 1px solid #fff;
+    background: #fff;
+    color: #050505;
+    font-size: .925rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color .2s ease, border-color .2s ease;
+  }
+
+  .home-cta__primary:hover {
+    border-color: #d4d4d4;
+    background: #d4d4d4;
+  }
+
+  .home-cta__secondary {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    color: #fff;
+    font-size: .925rem;
+    text-decoration: underline;
+    text-decoration-color: #737373;
+    text-underline-offset: 5px;
+  }
+
+  .home-cta__secondary:hover {
+    text-decoration-color: #fff;
+  }
+
+  @media (max-width: 767px) {
+    .home-section {
+      padding-block: 60px;
+    }
+
+    .home-section__description {
+      font-size: 1rem;
+    }
+
+    .home-build__cards,
+    .home-trust__principles,
+    .home-editorial__cards {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    .home-process__steps {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: 36px;
+    }
+
+    .home-step,
+    .home-step:first-child {
+      padding: 22px 0 24px;
+    }
+
+    .home-step + .home-step {
+      border-top: 1px solid #333;
+      border-left: 0;
+    }
+
+    .home-step__number {
+      margin-bottom: 14px;
+    }
+
+    .home-feature__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+      padding-block: 60px;
+    }
+
+    .home-feature__visual {
+      min-height: 0;
+      aspect-ratio: 4 / 3;
+      padding: 24px;
+    }
+
+    .home-final-cta {
+      padding-block: 56px;
+    }
+
+    .home-cta__inner {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-feature__cta,
+    .home-cta__primary {
+      transition: none;
+    }
+  }
+</style>
+
+<div id="home-content" class="home-content">
+  <section id="home-build" class="home-section home-build" aria-labelledby="homeBuildTitle">
+    <div class="container">
+      <div class="home-section__intro">
+        <p class="home-section__eyebrow">What we build</p>
+        <h2 id="homeBuildTitle">AI that connects research with real work.</h2>
+        <p class="home-section__description">Orecube explores and builds AI systems, products, and tools designed to make complex work more useful, understandable, and accessible.</p>
       </div>
-    </article>
-    <article class="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&h=600&q=85" alt="Healthcare team working in a clinical setting" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h3 class="text-xl font-semibold text-white mb-3">AI in Healthcare</h3>
-        <p class="text-gray-400 text-sm mb-4">Exploring how Orecube is revolutionizing diagnostics and treatment.</p>
-        <a href="/news.html" class="text-cyan-400 hover:underline">Read more →</a>
+      <div class="home-build__cards">
+        <article class="home-card">
+          <h3>Research with a practical purpose</h3>
+          <p>We study useful, responsible ways to apply AI across learning, work, creativity, and everyday problem-solving.</p>
+          <a class="home-text-link" href="/research.html">Explore research</a>
+        </article>
+        <article class="home-card">
+          <h3>Products people can use</h3>
+          <p>We turn promising ideas into focused products that help people accomplish meaningful tasks.</p>
+          <a class="home-text-link" href="/products.html">View products</a>
+        </article>
+        <article class="home-card">
+          <h3>Technology closer to people</h3>
+          <p>We design AI experiences around clarity, usefulness, trust, and the needs of the people using them.</p>
+          <a class="home-text-link" href="/company.html">About Orecube</a>
+        </article>
       </div>
-    </article>
-    <article class="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-      <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&h=600&q=85" alt="Students learning in a classroom" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h3 class="text-xl font-semibold text-white mb-3">AI for Education</h3>
-        <p class="text-gray-400 text-sm mb-4">New learning tools to make knowledge more accessible for everyone.</p>
-        <a href="/news.html" class="text-cyan-400 hover:underline">Read more →</a>
-      </div>
-    </article>
-  </div>
-</section>
-<!-- CTA Section -->
-<section class="bg-gradient-to-r from-purple-600/20 via-cyan-600/20 to-pink-600/20 py-20">
-  <div class="container flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-    <div class="max-w-3xl text-left">
-      <h2 class="text-4xl font-bold text-white mb-6">Join us in shaping the future of AI</h2>
-      <p class="text-lg text-gray-300 max-w-2xl">
-        Whether you’re a researcher, developer, or entrepreneur — Orecube is your partner in advancing safe and impactful AI.
-      </p>
     </div>
-    <a href="/company.html" class="home-cta inline-flex shrink-0 items-center self-start rounded-lg bg-white px-6 py-3 font-medium text-black transition hover:bg-gray-200 md:self-auto">
-      Learn about Orecube
-    </a>
-  </div>
-</section>
+  </section>
+
+  <section id="home-process" class="home-section home-process" aria-labelledby="homeProcessTitle">
+    <div class="container">
+      <div class="home-section__intro">
+        <p class="home-section__eyebrow">How we work</p>
+        <h2 id="homeProcessTitle">From an important question to something useful.</h2>
+        <p class="home-section__description">Orecube combines research, careful design, and practical testing to turn ideas into products people can understand and use.</p>
+      </div>
+      <div class="home-process__steps">
+        <article class="home-step">
+          <span class="home-step__number">01</span>
+          <h3>Understand</h3>
+          <p>Start with a real problem, need, or opportunity—not technology for its own sake.</p>
+        </article>
+        <article class="home-step">
+          <span class="home-step__number">02</span>
+          <h3>Explore</h3>
+          <p>Research the possibilities, test assumptions, and learn what makes the experience genuinely useful.</p>
+        </article>
+        <article class="home-step">
+          <span class="home-step__number">03</span>
+          <h3>Build</h3>
+          <p>Create focused products and experiences that can improve through real use and responsible iteration.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="home-featured" class="home-feature" aria-labelledby="homeFeaturedTitle">
+    <div class="container home-feature__inner">
+      <div class="home-feature__copy">
+        <p class="home-section__eyebrow">Featured product / Lumina</p>
+        <h2 id="homeFeaturedTitle">A learning companion that helps people keep moving.</h2>
+        <p>Lumina is being developed as a personal AI learning companion for people who want to understand more, practice consistently, and learn in a way that fits their goals.</p>
+        <a class="home-feature__cta" href="https://luminousai.vercel.app/">Meet Lumina</a>
+      </div>
+      <div class="home-feature__visual" role="img" aria-label="Neutral placeholder for Lumina product media; a product screenshot is not available.">
+        <p class="home-feature__visual-label">Product preview / not available</p>
+        <p class="home-feature__visual-name" aria-hidden="true">Lumina</p>
+        <p class="home-feature__visual-note">A personal AI learning companion</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="home-responsibility" class="home-section home-trust" aria-labelledby="homeTrustTitle">
+    <div class="container">
+      <div class="home-section__intro">
+        <p class="home-section__eyebrow">Responsible development</p>
+        <h2 id="homeTrustTitle">Useful AI needs thoughtful foundations.</h2>
+        <p class="home-section__description">Orecube approaches AI with attention to usefulness, clarity, safety, and the people affected by the systems we build.</p>
+      </div>
+      <div class="home-trust__principles">
+        <article class="home-card">
+          <h3>People first</h3>
+          <p>Design around the needs, context, and control of the people who use and experience AI.</p>
+        </article>
+        <article class="home-card">
+          <h3>Evidence before confidence</h3>
+          <p>Separate what is known, what is being tested, and what still needs to be understood.</p>
+        </article>
+        <article class="home-card">
+          <h3>Useful by design</h3>
+          <p>Focus on practical outcomes instead of adding intelligence without a clear purpose.</p>
+        </article>
+      </div>
+      <a class="home-text-link" href="/research.html#safety">Read our research approach</a>
+    </div>
+  </section>
+
+  <section id="home-research" class="home-section home-editorial" aria-labelledby="homeEditorialTitle">
+    <div class="container">
+      <div class="home-section__intro">
+        <p class="home-section__eyebrow">From Orecube</p>
+        <h2 id="homeEditorialTitle">Ideas, research, and progress.</h2>
+      </div>
+      <div class="home-editorial__cards">
+        <article class="home-editorial-card">
+          <p class="home-editorial-card__meta">Research synthesis / 10 min read</p>
+          <h3>AI in 2026: Capability Is Scaling Faster Than Readiness</h3>
+          <p class="home-editorial-card__description">An Orecube research synthesis on how AI capability, adoption, work, infrastructure, education, and governance are changing in 2026.</p>
+          <p class="home-editorial-card__date"><time datetime="2026-10-02">2 October 2026</time></p>
+          <a class="home-text-link" href="/research/ai-in-2026-capability-readiness/">Read the research</a>
+        </article>
+        <article class="home-editorial-card">
+          <p class="home-editorial-card__meta">Research synthesis / Product thesis / 8 min read</p>
+          <h3>Building a Better Way to Learn: A Research-Backed Product Thesis for Luminous</h3>
+          <p class="home-editorial-card__description">Why learning needs to become more personal, adaptive, accessible, and continuous—and how Orecube is testing a responsible path forward with Luminous.</p>
+          <p class="home-editorial-card__date"><time datetime="2026-10-01">1 October 2026</time></p>
+          <a class="home-text-link" href="/research/building-a-better-way-to-learn/">Read the research</a>
+        </article>
+        <article class="home-editorial-card">
+          <p class="home-editorial-card__meta">Perspective</p>
+          <h3>The most useful AI starts with people.</h3>
+          <p class="home-editorial-card__description">Usefulness depends on whether an AI tool fits the moment, makes sense to the person using it, and helps them reach a meaningful goal.</p>
+          <a class="home-text-link" href="/news/people-first-ai.html">Read the perspective</a>
+        </article>
+      </div>
+      <div class="home-editorial__all">
+        <a class="home-text-link" href="/research.html">View all research</a>
+        <a class="home-text-link" href="/news.html">Browse news</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-final-cta" aria-labelledby="homeCtaTitle">
+    <div class="container home-cta__inner">
+      <div class="home-cta__copy">
+        <p class="home-section__eyebrow">Explore Orecube</p>
+        <h2 id="homeCtaTitle">Explore what Orecube is building.</h2>
+        <p>Follow the work, explore the research, or discover the products being developed for a more useful future with AI.</p>
+      </div>
+      <div class="home-cta__links">
+        <a class="home-cta__primary" href="/products.html">Explore Orecube</a>
+        <a class="home-cta__secondary" href="/research.html">Read the research</a>
+      </div>
+    </div>
+  </section>
+</div>
+  </main>
  
 <!-- ===== Footer ===== -->
 <footer class="bg-black text-gray-400 pt-16 pb-8 border-t border-white/10">
